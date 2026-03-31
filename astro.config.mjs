@@ -40,6 +40,7 @@ export default defineConfig({
       dataset: sanityDataset,
       useCdn: false,
       studioBasePath: '/studio',
+      studioRouterHistory: 'hash',
     }),
     react(),
     sitemap(),

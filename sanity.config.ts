@@ -6,7 +6,7 @@ import { deskStructure } from './studio/structure/deskStructure';
 import { schemaTypes } from './studio/schemaTypes';
 
 const projectId =
-  process.env.SANITY_STUDIO_PROJECT_ID ?? process.env.PUBLIC_SANITY_PROJECT_ID ?? 'ppsg7ml5';
+  process.env.SANITY_STUDIO_PROJECT_ID ?? process.env.PUBLIC_SANITY_PROJECT_ID ?? 'ib0unnaw';
 const dataset =
   process.env.SANITY_STUDIO_DATASET ?? process.env.PUBLIC_SANITY_DATASET ?? 'production';
 

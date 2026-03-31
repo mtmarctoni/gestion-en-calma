@@ -14,7 +14,7 @@ import sitemap from '@astrojs/sitemap';
 
 const siteUrl = process.env.PUBLIC_SITE_URL ?? 'https://gestion-en-calma.vercel.app';
 const sanityProjectId =
-  process.env.PUBLIC_SANITY_PROJECT_ID ?? process.env.SANITY_STUDIO_PROJECT_ID ?? 'ppsg7ml5';
+  process.env.PUBLIC_SANITY_PROJECT_ID ?? process.env.SANITY_STUDIO_PROJECT_ID ?? 'ib0unnaw';
 const sanityDataset =
   process.env.PUBLIC_SANITY_DATASET ?? process.env.SANITY_STUDIO_DATASET ?? 'production';
 

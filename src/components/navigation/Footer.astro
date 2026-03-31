@@ -1,0 +1,43 @@
+---
+import Container from '@/components/ui/Container.astro';
+import type { SiteSettings } from '@/data/fallbackContent';
+
+interface Props {
+  site: SiteSettings;
+}
+
+const { site } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<footer class="mt-24 border-t border-brand-olive/10 bg-brand-paper py-12">
+  <Container class="grid gap-10 md:grid-cols-[1.3fr_1fr_1fr]">
+    <div>
+      <p class="font-display text-2xl text-brand-ink">{site.siteName}</p>
+      <p class="mt-3 max-w-lg text-sm leading-7 text-brand-ink-soft">{site.tagline}</p>
+      <p class="mt-4 text-sm text-brand-ink-soft">{site.location}</p>
+    </div>
+
+    <div>
+      <h2 class="text-sm font-semibold uppercase tracking-[0.18em] text-brand-olive-deep/80">Contacto</h2>
+      <ul class="mt-4 space-y-3 text-sm text-brand-ink-soft">
+        <li><a class="hover:text-brand-ink" href={`mailto:${site.email}`}>{site.email}</a></li>
+        <li><a class="hover:text-brand-ink" href={site.whatsappUrl} target="_blank" rel="noreferrer">WhatsApp</a></li>
+        <li><a class="hover:text-brand-ink" href={site.instagramUrl} target="_blank" rel="noreferrer">Instagram</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="text-sm font-semibold uppercase tracking-[0.18em] text-brand-olive-deep/80">Legal</h2>
+      <ul class="mt-4 space-y-3 text-sm text-brand-ink-soft">
+        {site.legalLinks.map((link) => (
+          <li><a class="hover:text-brand-ink" href={link.href}>{link.label}</a></li>
+        ))}
+      </ul>
+    </div>
+  </Container>
+
+  <Container class="mt-10 border-t border-brand-olive/10 pt-6 text-sm text-brand-ink-soft">
+    <p>&copy; {year} {site.siteName}. Todos los derechos reservados.</p>
+  </Container>
+</footer>

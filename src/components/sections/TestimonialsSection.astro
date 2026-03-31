@@ -1,0 +1,31 @@
+---
+import Container from '@/components/ui/Container.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import type { Testimonial } from '@/data/fallbackContent';
+
+interface Props {
+  items: Testimonial[];
+}
+
+const { items } = Astro.props;
+---
+
+<section class="py-14 md:py-20">
+  <Container>
+    <SectionHeading
+      eyebrow="Confianza"
+      title="Testimonios y referencias"
+      intro="Cuando Yolanda confirme testimonios publicables, este espacio servirá para reforzar la confianza sin vender humo."
+    />
+
+    <div class="mt-10 grid gap-5 lg:grid-cols-2">
+      {items.map((item) => (
+        <article class="rounded-[1.75rem] border border-brand-olive/10 bg-brand-paper p-6 shadow-[0_20px_50px_rgba(74,86,57,0.04)]">
+          <p class="text-lg leading-8 text-brand-ink-soft">“{item.quote}”</p>
+          <p class="mt-6 font-semibold text-brand-ink">{item.name}</p>
+          {item.role && <p class="mt-1 text-sm text-brand-ink-soft">{item.role}</p>}
+        </article>
+      ))}
+    </div>
+  </Container>
+</section>

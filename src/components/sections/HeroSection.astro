@@ -1,0 +1,37 @@
+---
+import Button from '@/components/ui/Button.astro';
+import Container from '@/components/ui/Container.astro';
+import type { HomePageData } from '@/data/fallbackContent';
+
+interface Props {
+  hero: HomePageData['hero'];
+}
+
+const { hero } = Astro.props;
+---
+
+<section class="relative overflow-hidden bg-brand-cream pb-16 pt-14 md:pb-24 md:pt-20">
+  <div class="absolute inset-x-0 top-0 -z-10 h-full bg-[radial-gradient(circle_at_top_right,rgba(172,185,155,0.28),transparent_35%),radial-gradient(circle_at_left_top,rgba(192,153,104,0.16),transparent_28%)]"></div>
+  <Container>
+    <div class="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
+      <div>
+        <p class="mb-4 text-xs font-semibold uppercase tracking-[0.26em] text-brand-olive-deep/80">{hero.eyebrow}</p>
+        <h1 class="max-w-4xl font-display text-balance text-5xl leading-tight text-brand-ink md:text-6xl">{hero.title}</h1>
+        <p class="mt-6 max-w-2xl text-pretty text-lg leading-8 text-brand-ink-soft md:text-xl">{hero.subtitle}</p>
+
+        <div class="mt-8 flex flex-wrap gap-4">
+          <Button href={hero.primaryCta.href}>{hero.primaryCta.label}</Button>
+          <Button href={hero.secondaryCta.href} variant="secondary" target="_blank" rel="noreferrer">{hero.secondaryCta.label}</Button>
+        </div>
+      </div>
+
+      <div class="rounded-[2rem] border border-brand-olive/12 bg-brand-paper p-8 shadow-[0_30px_80px_rgba(74,86,57,0.08)]">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-brand-olive-deep/80">La idea</p>
+        <p class="mt-5 font-display text-3xl leading-tight text-brand-ink">Menos ruido operativo. Más espacio para llevar tu negocio con claridad.</p>
+        <p class="mt-5 text-base leading-7 text-brand-ink-soft">
+          Cuando la gestión diaria pesa demasiado, todo se vuelve más lento. Esta web está pensada para transmitir justo lo contrario: apoyo cercano, orden útil y tranquilidad.
+        </p>
+      </div>
+    </div>
+  </Container>
+</section>

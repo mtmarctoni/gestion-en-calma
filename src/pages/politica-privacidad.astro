@@ -1,0 +1,33 @@
+---
+import Container from '@/components/ui/Container.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { buildMetadata } from '@/lib/seo/buildMetadata';
+import { loadSiteSettings } from '@/lib/sanity/loaders';
+import { env } from '@/lib/utils/env';
+
+const site = await loadSiteSettings();
+
+const metadata = buildMetadata({
+  seo: {
+    title: `Política de privacidad | ${site.siteName}`,
+    description: 'Información básica sobre el tratamiento de datos en Gestión en Calma.',
+    ogImage: site.seo.ogImage,
+  },
+  siteName: site.siteName,
+  siteUrl: env.siteUrl,
+  pathname: Astro.url.pathname,
+});
+---
+
+<BaseLayout site={site} metadata={metadata}>
+  <section class="py-16 md:py-20">
+    <Container class="max-w-3xl">
+      <h1 class="font-display text-5xl text-brand-ink">Política de privacidad</h1>
+      <div class="mt-8 space-y-6 text-base leading-8 text-brand-ink-soft">
+        <p>Este contenido es orientativo y debe validarse con la información real del negocio antes del lanzamiento.</p>
+        <p>Los datos enviados desde el formulario de contacto se utilizarán únicamente para responder a la solicitud realizada por la persona usuaria.</p>
+        <p>No se cederán datos a terceros salvo obligación legal o necesidad operativa justificada en la prestación del servicio.</p>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

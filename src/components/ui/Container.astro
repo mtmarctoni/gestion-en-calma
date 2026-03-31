@@ -1,0 +1,7 @@
+---
+const { class: className = '' } = Astro.props;
+---
+
+<div class={`mx-auto w-[min(1120px,calc(100%-1.5rem))] md:w-[min(1120px,calc(100%-3rem))] ${className}`.trim()}>
+  <slot />
+</div>

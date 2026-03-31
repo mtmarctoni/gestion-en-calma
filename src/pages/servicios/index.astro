@@ -1,0 +1,37 @@
+---
+import ServicesGridSection from '@/components/sections/ServicesGridSection.astro';
+import Container from '@/components/ui/Container.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { buildMetadata } from '@/lib/seo/buildMetadata';
+import { loadServices, loadServicesPage, loadSiteSettings } from '@/lib/sanity/loaders';
+import { env } from '@/lib/utils/env';
+
+const [site, page, services] = await Promise.all([loadSiteSettings(), loadServicesPage(), loadServices()]);
+
+const metadata = buildMetadata({
+  seo: page.seo,
+  siteName: site.siteName,
+  siteUrl: env.siteUrl,
+  pathname: Astro.url.pathname,
+});
+---
+
+<BaseLayout site={site} metadata={metadata}>
+  <section class="pb-12 pt-16 md:pb-16 md:pt-20">
+    <Container>
+      <SectionHeading eyebrow={page.intro.eyebrow} title={page.intro.title} intro={page.intro.body} />
+
+      <div class="mt-10 grid gap-5 md:grid-cols-3">
+        {page.categories.map((category) => (
+          <article class="rounded-[1.75rem] border border-brand-olive/10 bg-brand-paper p-6 shadow-[0_20px_50px_rgba(74,86,57,0.04)]">
+            <h2 class="font-display text-2xl text-brand-ink">{category.title}</h2>
+            <p class="mt-4 text-base leading-7 text-brand-ink-soft">{category.description}</p>
+          </article>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <ServicesGridSection title="Servicios disponibles" services={services} />
+</BaseLayout>

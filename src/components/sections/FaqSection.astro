@@ -1,0 +1,26 @@
+---
+import Container from '@/components/ui/Container.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import type { FAQItem } from '@/data/fallbackContent';
+
+interface Props {
+  items: FAQItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<section class="py-14 md:py-20">
+  <Container>
+    <SectionHeading eyebrow="Preguntas frecuentes" title="Respuestas rápidas antes de hablar" />
+
+    <div class="mt-10 space-y-4">
+      {items.map((item) => (
+        <details class="rounded-[1.5rem] border border-brand-olive/10 bg-brand-paper px-6 py-5 shadow-[0_16px_36px_rgba(74,86,57,0.04)]">
+          <summary class="cursor-pointer list-none font-semibold text-brand-ink">{item.question}</summary>
+          <p class="mt-4 max-w-3xl text-base leading-7 text-brand-ink-soft">{item.answer}</p>
+        </details>
+      ))}
+    </div>
+  </Container>
+</section>

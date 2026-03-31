@@ -1,0 +1,62 @@
+---
+import ContactForm from '@/components/forms/ContactForm.astro';
+import Button from '@/components/ui/Button.astro';
+import Container from '@/components/ui/Container.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { buildMetadata } from '@/lib/seo/buildMetadata';
+import { loadContactPage, loadSiteSettings } from '@/lib/sanity/loaders';
+import { env } from '@/lib/utils/env';
+
+const [site, page] = await Promise.all([loadSiteSettings(), loadContactPage()]);
+const errorMessage = Astro.url.searchParams.get('error');
+
+const metadata = buildMetadata({
+  seo: page.seo,
+  siteName: site.siteName,
+  siteUrl: env.siteUrl,
+  pathname: Astro.url.pathname,
+});
+---
+
+<BaseLayout site={site} metadata={metadata}>
+  <section class="pb-16 pt-16 md:pt-20">
+    <Container>
+      <SectionHeading eyebrow={page.eyebrow} title={page.title} intro={page.intro} />
+
+      <div class="mt-10 grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+        <div class="rounded-[2rem] border border-brand-olive/10 bg-brand-paper p-8 shadow-[0_20px_50px_rgba(74,86,57,0.04)]">
+          <h2 class="font-display text-3xl text-brand-ink">Otras formas de contacto</h2>
+          <div class="mt-6 space-y-6 text-base leading-7 text-brand-ink-soft">
+            <div>
+              <p class="font-semibold text-brand-ink">WhatsApp</p>
+              <p class="mt-1">Si prefieres escribir directamente, puedes hacerlo por WhatsApp.</p>
+              <div class="mt-4">
+                <Button href={site.whatsappUrl} variant="secondary" target="_blank" rel="noreferrer">Abrir WhatsApp</Button>
+              </div>
+            </div>
+
+            <div>
+              <p class="font-semibold text-brand-ink">Email</p>
+              <p class="mt-1"><a class="hover:text-brand-ink" href={`mailto:${site.email}`}>{site.email}</a></p>
+            </div>
+
+            <div>
+              <p class="font-semibold text-brand-ink">Llamada</p>
+              <p class="mt-1">Si más adelante Yolanda activa una agenda externa, este será también el lugar para reservar llamada.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-4">
+          {errorMessage && (
+            <div class="rounded-[1.5rem] border border-red-200 bg-red-50 px-5 py-4 text-sm text-red-700">
+              {errorMessage}
+            </div>
+          )}
+          <ContactForm title={page.formTitle} intro={page.formIntro} />
+        </div>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

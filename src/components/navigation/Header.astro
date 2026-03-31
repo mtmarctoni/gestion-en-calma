@@ -1,0 +1,47 @@
+---
+import Button from '@/components/ui/Button.astro';
+import Container from '@/components/ui/Container.astro';
+import type { SiteSettings } from '@/data/fallbackContent';
+
+interface Props {
+  site: SiteSettings;
+  pathname: string;
+}
+
+const { site, pathname } = Astro.props;
+---
+
+<header class="sticky top-0 z-40 border-b border-brand-olive/10 bg-brand-cream/90 backdrop-blur-md">
+  <Container class="flex flex-col gap-4 py-4 lg:flex-row lg:items-center lg:justify-between">
+    <div>
+      <a class="font-display text-2xl text-brand-ink" href="/">{site.siteName}</a>
+      <p class="mt-1 max-w-xl text-sm text-brand-ink-soft">{site.tagline}</p>
+    </div>
+
+    <div class="flex flex-col gap-4 lg:items-end">
+      <nav aria-label="Principal">
+        <ul class="flex flex-wrap items-center gap-4 text-sm text-brand-ink-soft">
+          {site.navLinks.map((link) => (
+            <li>
+              <a
+                class:list={[
+                  'transition hover:text-brand-ink',
+                  { 'font-semibold text-brand-ink': pathname === link.href },
+                ]}
+                href={link.href}
+                aria-current={pathname === link.href ? 'page' : undefined}
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <div class="flex flex-wrap gap-3">
+        <Button href={site.secondaryCta.href} variant="secondary" target="_blank" rel="noreferrer">{site.secondaryCta.label}</Button>
+        <Button href={site.primaryCta.href}>{site.primaryCta.label}</Button>
+      </div>
+    </div>
+  </Container>
+</header>

@@ -1,0 +1,67 @@
+---
+import Button from '@/components/ui/Button.astro';
+import Container from '@/components/ui/Container.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { buildMetadata } from '@/lib/seo/buildMetadata';
+import { loadAboutPage, loadSiteSettings } from '@/lib/sanity/loaders';
+import { env } from '@/lib/utils/env';
+
+const [site, page] = await Promise.all([loadSiteSettings(), loadAboutPage()]);
+
+const metadata = buildMetadata({
+  seo: page.seo,
+  siteName: site.siteName,
+  siteUrl: env.siteUrl,
+  pathname: Astro.url.pathname,
+});
+---
+
+<BaseLayout site={site} metadata={metadata}>
+  <section class="pb-16 pt-16 md:pt-20">
+    <Container>
+      <div class="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+        <div class="rounded-[2rem] border border-brand-olive/10 bg-brand-paper p-8 shadow-[0_20px_50px_rgba(74,86,57,0.04)]">
+          <p class="text-sm font-semibold uppercase tracking-[0.2em] text-brand-olive-deep/80">{site.founderName}</p>
+          <p class="mt-4 font-display text-4xl text-brand-ink">Más de diez años de experiencia sosteniendo procesos que necesitan orden y seguimiento</p>
+          <p class="mt-4 text-base leading-7 text-brand-ink-soft">Una forma de trabajar cercana, clara y muy orientada a que el negocio respire mejor.</p>
+        </div>
+
+        <div>
+          <SectionHeading eyebrow={page.eyebrow} title={page.title} intro={page.intro} />
+          <div class="mt-6 space-y-5 text-base leading-8 text-brand-ink-soft">
+            {page.story.map((paragraph) => (
+              <p>{paragraph}</p>
+            ))}
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <section class="pb-16">
+    <Container>
+      <div class="grid gap-5 md:grid-cols-3">
+        {page.values.map((value) => (
+          <article class="rounded-[1.75rem] border border-brand-olive/10 bg-brand-paper p-6 shadow-[0_20px_50px_rgba(74,86,57,0.04)]">
+            <h2 class="font-display text-2xl text-brand-ink">{value.title}</h2>
+            <p class="mt-4 text-base leading-7 text-brand-ink-soft">{value.description}</p>
+          </article>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <section class="pb-20">
+    <Container>
+      <div class="rounded-[2rem] border border-brand-olive/10 bg-brand-olive px-8 py-10 text-brand-cream shadow-[0_26px_70px_rgba(74,86,57,0.22)]">
+        <h2 class="font-display text-4xl">Si te reconoces en esta forma de trabajar, podemos hablar</h2>
+        <p class="mt-4 max-w-2xl text-base leading-8 text-brand-cream/85">No hace falta tenerlo todo claro antes de contactar. A veces lo primero es simplemente poner nombre a lo que hoy te está pesando.</p>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <Button href="/contacto/" class="bg-brand-cream text-brand-olive hover:bg-brand-paper">Contactar</Button>
+          <Button href={site.whatsappUrl} variant="secondary" class="border-brand-cream/40 bg-transparent text-brand-cream hover:bg-white/8" target="_blank" rel="noreferrer">WhatsApp</Button>
+        </div>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

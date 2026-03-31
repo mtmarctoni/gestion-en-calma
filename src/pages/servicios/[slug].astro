@@ -1,0 +1,98 @@
+---
+import Button from '@/components/ui/Button.astro';
+import Container from '@/components/ui/Container.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { servicesFallback } from '@/data/fallbackContent';
+import { buildMetadata } from '@/lib/seo/buildMetadata';
+import { loadServiceBySlug, loadServices, loadSiteSettings } from '@/lib/sanity/loaders';
+import { env } from '@/lib/utils/env';
+
+export async function getStaticPaths() {
+  const services = await loadServices();
+
+  return services.map((service) => ({
+    params: { slug: service.slug },
+  }));
+}
+
+const { slug } = Astro.params;
+const [site, service] = await Promise.all([loadSiteSettings(), loadServiceBySlug(slug ?? '')]);
+
+if (!service) {
+  return Astro.redirect('/servicios/');
+}
+
+const metadata = buildMetadata({
+  seo: {
+    title: `${service.title} | ${site.siteName}`,
+    description: service.shortDescription,
+    ogImage: site.seo.ogImage,
+  },
+  siteName: site.siteName,
+  siteUrl: env.siteUrl,
+  pathname: Astro.url.pathname,
+});
+
+const relatedServices = servicesFallback.filter((item) => item.slug !== service.slug).slice(0, 3);
+---
+
+<BaseLayout site={site} metadata={metadata}>
+  <section class="pb-16 pt-16 md:pt-20">
+    <Container>
+      <a class="text-sm font-semibold text-brand-olive-deep hover:text-brand-ink" href="/servicios/">← Volver a servicios</a>
+
+      <div class="mt-8 grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-[0.22em] text-brand-olive-deep/80">Servicio</p>
+          <h1 class="mt-4 max-w-3xl font-display text-balance text-5xl leading-tight text-brand-ink md:text-6xl">{service.title}</h1>
+          <p class="mt-6 max-w-2xl text-lg leading-8 text-brand-ink-soft">{service.shortDescription}</p>
+
+          {service.longDescription && <p class="mt-8 text-base leading-8 text-brand-ink-soft">{service.longDescription}</p>}
+
+          <div class="mt-10 flex flex-wrap gap-4">
+            <Button href="/contacto/">Hablar con Yolanda</Button>
+            <Button href={site.whatsappUrl} variant="secondary" target="_blank" rel="noreferrer">Escribir por WhatsApp</Button>
+          </div>
+        </div>
+
+        <aside class="rounded-[2rem] border border-brand-olive/10 bg-brand-paper p-8 shadow-[0_20px_50px_rgba(74,86,57,0.04)]">
+          <h2 class="font-display text-2xl text-brand-ink">¿Qué puede aportar este servicio?</h2>
+          <ul class="mt-6 space-y-4 text-base leading-7 text-brand-ink-soft">
+            {service.outcomes.map((outcome) => (
+              <li class="flex gap-3">
+                <span class="mt-2 inline-flex h-2.5 w-2.5 rounded-full bg-brand-sage"></span>
+                <span>{outcome}</span>
+              </li>
+            ))}
+          </ul>
+
+          <h3 class="mt-8 font-display text-xl text-brand-ink">¿Qué incluye normalmente?</h3>
+          <ul class="mt-4 space-y-3 text-sm leading-7 text-brand-ink-soft">
+            {service.deliverables.map((deliverable) => (
+              <li>{deliverable}</li>
+            ))}
+          </ul>
+        </aside>
+      </div>
+    </Container>
+  </section>
+
+  <section class="pb-18">
+    <Container>
+      <div class="rounded-[2rem] border border-brand-olive/10 bg-brand-paper p-8 shadow-[0_20px_50px_rgba(74,86,57,0.04)]">
+        <h2 class="font-display text-3xl text-brand-ink">Otros servicios relacionados</h2>
+        <div class="mt-8 grid gap-5 md:grid-cols-3">
+          {relatedServices.map((item) => (
+            <article class="rounded-[1.5rem] border border-brand-olive/10 bg-brand-cream p-5">
+              <h3 class="font-display text-2xl text-brand-ink">{item.title}</h3>
+              <p class="mt-3 text-sm leading-7 text-brand-ink-soft">{item.shortDescription}</p>
+              <a class="mt-5 inline-block font-semibold text-brand-olive-deep hover:text-brand-ink" href={`/servicios/${item.slug}/`}>
+                Ver más
+              </a>
+            </article>
+          ))}
+        </div>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

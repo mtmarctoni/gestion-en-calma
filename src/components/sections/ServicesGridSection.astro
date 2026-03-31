@@ -1,0 +1,44 @@
+---
+import Container from '@/components/ui/Container.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import type { Service } from '@/data/fallbackContent';
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  intro?: string;
+  services: Service[];
+}
+
+const { eyebrow, title, intro, services } = Astro.props;
+---
+
+<section class="py-14 md:py-20">
+  <Container>
+    <SectionHeading eyebrow={eyebrow} title={title} intro={intro} />
+
+    <div class="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+      {services.map((service) => (
+        <article class="flex h-full flex-col rounded-[1.75rem] border border-brand-olive/10 bg-brand-paper p-6 shadow-[0_20px_50px_rgba(74,86,57,0.04)]">
+          <h3 class="font-display text-2xl text-brand-ink">{service.title}</h3>
+          <p class="mt-4 text-base leading-7 text-brand-ink-soft">{service.shortDescription}</p>
+
+          <ul class="mt-5 space-y-2 text-sm text-brand-ink-soft">
+            {service.outcomes.slice(0, 3).map((outcome) => (
+              <li class="flex gap-3">
+                <span class="mt-2 inline-flex h-2 w-2 rounded-full bg-brand-sage"></span>
+                <span>{outcome}</span>
+              </li>
+            ))}
+          </ul>
+
+          <div class="mt-6 pt-3">
+            <a class="font-semibold text-brand-olive-deep transition hover:text-brand-ink" href={`/servicios/${service.slug}/`}>
+              Ver servicio
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </Container>
+</section>

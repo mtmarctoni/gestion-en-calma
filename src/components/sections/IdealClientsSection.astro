@@ -1,0 +1,25 @@
+---
+import Container from '@/components/ui/Container.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import type { HomePageData } from '@/data/fallbackContent';
+
+interface Props {
+  data: HomePageData['idealClients'];
+}
+
+const { data } = Astro.props;
+---
+
+<section class="py-14 md:py-20">
+  <Container>
+    <SectionHeading title={data.title} intro={data.intro} />
+
+    <div class="mt-10 flex flex-wrap gap-3">
+      {data.items.map((item) => (
+        <span class="rounded-full border border-brand-olive/15 bg-brand-paper px-4 py-2 text-sm text-brand-ink-soft">
+          {item}
+        </span>
+      ))}
+    </div>
+  </Container>
+</section>

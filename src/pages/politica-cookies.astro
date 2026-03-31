@@ -1,0 +1,32 @@
+---
+import Container from '@/components/ui/Container.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { buildMetadata } from '@/lib/seo/buildMetadata';
+import { loadSiteSettings } from '@/lib/sanity/loaders';
+import { env } from '@/lib/utils/env';
+
+const site = await loadSiteSettings();
+
+const metadata = buildMetadata({
+  seo: {
+    title: `Política de cookies | ${site.siteName}`,
+    description: 'Información básica sobre el uso de cookies en Gestión en Calma.',
+    ogImage: site.seo.ogImage,
+  },
+  siteName: site.siteName,
+  siteUrl: env.siteUrl,
+  pathname: Astro.url.pathname,
+});
+---
+
+<BaseLayout site={site} metadata={metadata}>
+  <section class="py-16 md:py-20">
+    <Container class="max-w-3xl">
+      <h1 class="font-display text-5xl text-brand-ink">Política de cookies</h1>
+      <div class="mt-8 space-y-6 text-base leading-8 text-brand-ink-soft">
+        <p>Esta política debe completarse según las herramientas analíticas o de terceros que se incorporen finalmente al sitio.</p>
+        <p>Si el proyecto no utiliza cookies no esenciales, este documento deberá reflejarlo de forma expresa y actualizada.</p>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

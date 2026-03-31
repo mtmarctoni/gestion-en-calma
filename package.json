@@ -1,0 +1,49 @@
+{
+  "name": "gestion-en-calma",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "typecheck": "astro check",
+    "lint": "biome check .",
+    "format": "biome format --write .",
+    "check": "biome check . && astro check",
+    "sanity": "sanity"
+  },
+  "dependencies": {
+    "@astrojs/react": "^5.0.2",
+    "@astrojs/sitemap": "^3.7.2",
+    "@astrojs/vercel": "^10.0.3",
+    "@fontsource-variable/fraunces": "^5.2.9",
+    "@fontsource-variable/inter": "^5.2.8",
+    "@sanity/astro": "^3.3.1",
+    "@sanity/client": "^7.20.0",
+    "@sanity/image-url": "^2.1.1",
+    "@sanity/vision": "^5.18.0",
+    "@tailwindcss/vite": "^4.2.2",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "astro": "^6.1.2",
+    "astro-portabletext": "^0.13.0",
+    "lodash": "^4.17.23",
+    "react": "^19.2.4",
+    "react-compiler-runtime": "^1.0.0",
+    "react-dom": "^19.2.4",
+    "react-is": "^19.2.4",
+    "resend": "^6.10.0",
+    "sanity": "^5.18.0",
+    "styled-components": "^6.3.12",
+    "tailwindcss": "^4.2.2"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.8",
+    "@biomejs/biome": "^2.4.10",
+    "typescript": "^5.9.3"
+  }
+}

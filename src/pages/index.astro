@@ -1,0 +1,52 @@
+---
+import FaqSection from '@/components/sections/FaqSection.astro';
+import FinalCtaSection from '@/components/sections/FinalCtaSection.astro';
+import FounderSection from '@/components/sections/FounderSection.astro';
+import HeroSection from '@/components/sections/HeroSection.astro';
+import IdealClientsSection from '@/components/sections/IdealClientsSection.astro';
+import OutcomesSection from '@/components/sections/OutcomesSection.astro';
+import PainPointsSection from '@/components/sections/PainPointsSection.astro';
+import ProcessSection from '@/components/sections/ProcessSection.astro';
+import ServicesGridSection from '@/components/sections/ServicesGridSection.astro';
+import TestimonialsSection from '@/components/sections/TestimonialsSection.astro';
+import TrustStripSection from '@/components/sections/TrustStripSection.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { buildMetadata } from '@/lib/seo/buildMetadata';
+import {
+  loadFaqItems,
+  loadHomePage,
+  loadServices,
+  loadSiteSettings,
+  loadTestimonials,
+} from '@/lib/sanity/loaders';
+import { env } from '@/lib/utils/env';
+
+const [site, page, services, testimonials, faqItems] = await Promise.all([
+  loadSiteSettings(),
+  loadHomePage(),
+  loadServices(),
+  loadTestimonials(),
+  loadFaqItems(),
+]);
+
+const metadata = buildMetadata({
+  seo: page.seo,
+  siteName: site.siteName,
+  siteUrl: env.siteUrl,
+  pathname: Astro.url.pathname,
+});
+---
+
+<BaseLayout site={site} metadata={metadata}>
+  <HeroSection hero={page.hero} />
+  <TrustStripSection items={page.trustItems} />
+  <PainPointsSection data={page.painPoints} />
+  <ServicesGridSection title={page.featuredServicesTitle} services={services.filter((service) => service.featured)} />
+  <OutcomesSection data={page.outcomes} />
+  <IdealClientsSection data={page.idealClients} />
+  <ProcessSection data={page.process} />
+  <FounderSection data={page.founder} />
+  <TestimonialsSection items={testimonials} />
+  <FaqSection items={faqItems} />
+  <FinalCtaSection data={page.finalCta} />
+</BaseLayout>

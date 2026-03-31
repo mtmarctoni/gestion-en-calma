@@ -1,0 +1,27 @@
+---
+import Container from '@/components/ui/Container.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import type { HomePageData } from '@/data/fallbackContent';
+
+interface Props {
+  data: HomePageData['process'];
+}
+
+const { data } = Astro.props;
+---
+
+<section class="py-14 md:py-20">
+  <Container>
+    <SectionHeading title={data.title} />
+
+    <div class="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+      {data.steps.map((step, index) => (
+        <article class="rounded-[1.75rem] border border-brand-olive/10 bg-brand-paper p-6 shadow-[0_20px_50px_rgba(74,86,57,0.04)]">
+          <p class="text-sm font-semibold uppercase tracking-[0.2em] text-brand-olive-deep/70">Paso {index + 1}</p>
+          <h3 class="mt-4 font-display text-2xl text-brand-ink">{step.title}</h3>
+          <p class="mt-4 text-base leading-7 text-brand-ink-soft">{step.description}</p>
+        </article>
+      ))}
+    </div>
+  </Container>
+</section>

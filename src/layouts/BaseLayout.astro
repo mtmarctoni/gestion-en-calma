@@ -1,0 +1,49 @@
+---
+import '@fontsource-variable/inter';
+import '@fontsource-variable/fraunces';
+import '@/styles/global.css';
+import Footer from '@/components/navigation/Footer.astro';
+import Header from '@/components/navigation/Header.astro';
+import type { SiteSettings } from '@/data/fallbackContent';
+
+interface Props {
+  site: SiteSettings;
+  metadata: {
+    canonical: string;
+    title: string;
+    description: string;
+    ogImage?: string;
+    siteName: string;
+  };
+}
+
+const { site, metadata } = Astro.props;
+const pathname = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{metadata.title}</title>
+    <meta name="description" content={metadata.description} />
+    <link rel="canonical" href={metadata.canonical} />
+    <meta property="og:title" content={metadata.title} />
+    <meta property="og:description" content={metadata.description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={metadata.canonical} />
+    <meta property="og:site_name" content={metadata.siteName} />
+    {metadata.ogImage && <meta property="og:image" content={metadata.ogImage} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body class="bg-brand-cream text-brand-ink antialiased">
+    <Header site={site} pathname={pathname} />
+    <main>
+      <slot />
+    </main>
+    <Footer site={site} />
+  </body>
+</html>

@@ -1,0 +1,43 @@
+---
+import Button from '@/components/ui/Button.astro';
+
+interface Props {
+  title: string;
+  intro: string;
+}
+
+const { title, intro } = Astro.props;
+---
+
+<section class="rounded-[2rem] border border-brand-olive/10 bg-brand-paper p-8 shadow-[0_20px_50px_rgba(74,86,57,0.04)]">
+  <h2 class="font-display text-3xl text-brand-ink">{title}</h2>
+  <p class="mt-4 text-base leading-7 text-brand-ink-soft">{intro}</p>
+
+  <form action="/api/contact" class="mt-8 grid gap-5" method="post">
+    <input class="hidden" type="text" name="company" autocomplete="off" tabindex="-1" />
+
+    <label class="grid gap-2 text-sm font-medium text-brand-ink">
+      Nombre
+      <input class="rounded-2xl border border-brand-olive/15 bg-brand-cream px-4 py-3 text-base text-brand-ink outline-none transition focus:border-brand-olive/40" name="name" required type="text" />
+    </label>
+
+    <label class="grid gap-2 text-sm font-medium text-brand-ink">
+      Email
+      <input class="rounded-2xl border border-brand-olive/15 bg-brand-cream px-4 py-3 text-base text-brand-ink outline-none transition focus:border-brand-olive/40" name="email" required type="email" />
+    </label>
+
+    <label class="grid gap-2 text-sm font-medium text-brand-ink">
+      Tipo de negocio
+      <input class="rounded-2xl border border-brand-olive/15 bg-brand-cream px-4 py-3 text-base text-brand-ink outline-none transition focus:border-brand-olive/40" name="business" type="text" />
+    </label>
+
+    <label class="grid gap-2 text-sm font-medium text-brand-ink">
+      ¿En qué necesitas apoyo?
+      <textarea class="min-h-36 rounded-2xl border border-brand-olive/15 bg-brand-cream px-4 py-3 text-base text-brand-ink outline-none transition focus:border-brand-olive/40" name="message" required></textarea>
+    </label>
+
+    <div class="pt-2">
+      <Button type="submit">Enviar mensaje</Button>
+    </div>
+  </form>
+</section>

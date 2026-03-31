@@ -1,0 +1,25 @@
+---
+import Container from '@/components/ui/Container.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import type { HomePageData } from '@/data/fallbackContent';
+
+interface Props {
+  data: HomePageData['outcomes'];
+}
+
+const { data } = Astro.props;
+---
+
+<section class="bg-brand-paper py-14 md:py-20">
+  <Container>
+    <SectionHeading title={data.title} />
+
+    <div class="mt-10 grid gap-4 md:grid-cols-2">
+      {data.items.map((item) => (
+        <div class="rounded-[1.5rem] border border-brand-olive/10 bg-brand-cream px-6 py-5 text-brand-ink-soft shadow-[0_18px_40px_rgba(74,86,57,0.04)]">
+          {item}
+        </div>
+      ))}
+    </div>
+  </Container>
+</section>

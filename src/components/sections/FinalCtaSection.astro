@@ -1,0 +1,25 @@
+---
+import Button from '@/components/ui/Button.astro';
+import Container from '@/components/ui/Container.astro';
+import type { HomePageData } from '@/data/fallbackContent';
+
+interface Props {
+  data: HomePageData['finalCta'];
+}
+
+const { data } = Astro.props;
+---
+
+<section class="pb-18 pt-8 md:pb-24">
+  <Container>
+    <div class="rounded-[2.25rem] border border-brand-olive/10 bg-brand-olive px-8 py-10 text-brand-cream shadow-[0_26px_70px_rgba(74,86,57,0.22)] md:px-12 md:py-14">
+      <h2 class="max-w-3xl font-display text-balance text-4xl leading-tight md:text-5xl">{data.title}</h2>
+      <p class="mt-5 max-w-2xl text-base leading-8 text-brand-cream/85 md:text-lg">{data.body}</p>
+
+      <div class="mt-8 flex flex-wrap gap-4">
+        <Button href={data.primaryCta.href} class="bg-brand-cream text-brand-olive hover:bg-brand-paper">{data.primaryCta.label}</Button>
+        <Button href={data.secondaryCta.href} variant="secondary" class="border-brand-cream/40 bg-transparent text-brand-cream hover:bg-white/8" target="_blank" rel="noreferrer">{data.secondaryCta.label}</Button>
+      </div>
+    </div>
+  </Container>
+</section>

@@ -1,0 +1,36 @@
+---
+import Button from '@/components/ui/Button.astro';
+import Container from '@/components/ui/Container.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import type { HomePageData } from '@/data/fallbackContent';
+
+interface Props {
+  data: HomePageData['founder'];
+}
+
+const { data } = Astro.props;
+---
+
+<section class="bg-brand-paper py-14 md:py-20">
+  <Container>
+    <div class="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+      <div class="rounded-[2rem] border border-brand-olive/10 bg-brand-cream p-8 shadow-[0_24px_60px_rgba(74,86,57,0.05)]">
+        <p class="text-sm font-semibold uppercase tracking-[0.2em] text-brand-olive-deep/80">Yolanda</p>
+        <p class="mt-4 font-display text-4xl text-brand-ink">Apoyo cercano, criterio y seguimiento real</p>
+        <p class="mt-4 text-base leading-7 text-brand-ink-soft">Una presencia tranquila que ayuda a que el negocio no dependa siempre de la misma persona.</p>
+      </div>
+
+      <div>
+        <SectionHeading eyebrow="Sobre mí" title={data.title} />
+        <div class="mt-6 space-y-5 text-base leading-8 text-brand-ink-soft">
+          {data.body.map((paragraph) => (
+            <p>{paragraph}</p>
+          ))}
+        </div>
+        <div class="mt-8">
+          <Button href="/sobre-mi/" variant="secondary">Conocer más sobre Yolanda</Button>
+        </div>
+      </div>
+    </div>
+  </Container>
+</section>

@@ -8,14 +8,19 @@ interface Props {
 }
 
 const { items } = Astro.props;
+const hasPublishedTestimonials = items.some((item) => !item.isPlaceholder);
 ---
 
 <section class="py-14 md:py-20">
   <Container>
     <SectionHeading
       eyebrow="Confianza"
-      title="Testimonios y referencias"
-      intro="Cuando Yolanda confirme testimonios publicables, este espacio servirá para reforzar la confianza sin vender humo."
+      title={hasPublishedTestimonials ? 'Testimonios y referencias' : 'Experiencia y referencias'}
+      intro={
+        hasPublishedTestimonials
+          ? 'La mejor forma de entender cómo trabaja Yolanda es ver qué cambia cuando alguien deja de cargar con toda la gestión sola.'
+          : 'Mientras reunimos testimonios publicables, este espacio deja claro algo importante: aquí no se promete humo, se trabaja con experiencia, orden y criterio.'
+      }
     />
 
     <div class="mt-10 grid gap-5 lg:grid-cols-2">

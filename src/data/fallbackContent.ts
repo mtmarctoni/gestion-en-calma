@@ -20,6 +20,7 @@ export type Testimonial = {
   name: string;
   role?: string;
   quote: string;
+  isPlaceholder?: boolean;
 };
 
 export type FAQItem = {
@@ -255,10 +256,11 @@ export const servicesFallback: Service[] = [
 export const testimonialsFallback: Testimonial[] = [
   {
     _id: 'testimonial-placeholder-1',
-    name: 'Testimonio pendiente',
-    role: 'Espacio reservado',
+    name: 'Testimonios disponibles próximamente',
+    role: 'Referencia pendiente de publicación',
     quote:
-      'Aquí podrá aparecer un testimonio real cuando Yolanda confirme las primeras referencias publicables.',
+      'Yolanda ya cuenta con experiencia y recorrido, pero este espacio se actualizará en cuanto podamos publicar referencias reales de clientes con total tranquilidad.',
+    isPlaceholder: true,
   },
 ];
 
@@ -287,9 +289,9 @@ export const homePageFallback: HomePageData = {
   seo: siteSettingsFallback.seo,
   hero: {
     eyebrow: 'Gestión en Calma · apoyo cercano para pequeños negocios',
-    title: 'Delega la gestión de tu negocio y vuelve a centrarte en lo importante',
+    title: 'Ordena la gestión de tu negocio y recupera tiempo para lo que mejor haces',
     subtitle:
-      'Ayudo a autónomos y pequeñas empresas a ordenar tareas administrativas y digitales, mejorar procesos y ganar tiempo para su trabajo de verdad.',
+      'Ayudo a autónomos y pequeños negocios a poner orden en tareas administrativas y digitales, mejorar procesos y dejar de cargar solos con toda la operativa.',
     primaryCta: siteSettingsFallback.primaryCta,
     secondaryCta: siteSettingsFallback.secondaryCta,
   },
@@ -310,7 +312,7 @@ export const homePageFallback: HomePageData = {
   },
   featuredServicesTitle: '¿En qué puedo ayudarte?',
   outcomes: {
-    title: 'Lo que buscamos no es hacer más. Es trabajar con más calma y claridad.',
+    title: 'No se trata de hacer más. Se trata de trabajar con más calma, orden y continuidad.',
     items: [
       'Recuperar tiempo para tu actividad principal',
       'Bajar la carga mental del día a día',

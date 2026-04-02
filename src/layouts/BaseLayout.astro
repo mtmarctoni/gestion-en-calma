@@ -39,9 +39,9 @@ const pathname = Astro.url.pathname;
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
-  <body class="bg-brand-cream text-brand-ink antialiased">
+  <body class="overflow-x-hidden bg-brand-cream text-brand-ink antialiased">
     <Header site={site} pathname={pathname} />
-    <main>
+    <main class="overflow-hidden">
       <slot />
     </main>
     <Footer site={site} />

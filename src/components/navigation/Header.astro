@@ -11,36 +11,40 @@ interface Props {
 const { site, pathname } = Astro.props;
 ---
 
-<header class="sticky top-0 z-40 border-b border-brand-olive/10 bg-brand-cream/90 backdrop-blur-md">
-  <Container class="flex flex-col gap-4 py-4 lg:flex-row lg:items-center lg:justify-between">
-    <div>
-      <a class="font-display text-2xl text-brand-ink" href="/">{site.siteName}</a>
-      <p class="mt-1 max-w-xl text-sm text-brand-ink-soft">{site.tagline}</p>
-    </div>
+<header class="sticky top-0 z-40 px-3 pt-3">
+  <Container>
+    <div class="flex flex-col gap-4 rounded-[1.7rem] border border-brand-olive/10 bg-[rgba(252,247,239,0.82)] px-5 py-4 shadow-[0_16px_40px_rgba(74,56,37,0.08)] backdrop-blur-xl lg:flex-row lg:items-center lg:justify-between lg:px-6">
+      <div>
+        <a class="font-display text-[1.9rem] leading-none text-brand-ink" href="/">{site.siteName}</a>
+        <p class="mt-2 max-w-lg text-sm leading-6 text-brand-ink-soft">{site.tagline}</p>
+      </div>
 
-    <div class="flex flex-col gap-4 lg:items-end">
-      <nav aria-label="Principal">
-        <ul class="flex flex-wrap items-center gap-4 text-sm text-brand-ink-soft">
-          {site.navLinks.map((link) => (
-            <li>
-              <a
-                class:list={[
-                  'transition hover:text-brand-ink',
-                  { 'font-semibold text-brand-ink': pathname === link.href },
-                ]}
-                href={link.href}
-                aria-current={pathname === link.href ? 'page' : undefined}
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </nav>
+      <div class="flex flex-col gap-4 lg:items-end">
+        <nav aria-label="Principal">
+          <ul class="flex flex-wrap items-center gap-2 text-sm">
+            {site.navLinks.map((link) => (
+              <li>
+                <a
+                  class:list={[
+                    'rounded-full px-3 py-2 transition',
+                    pathname === link.href
+                      ? 'bg-brand-paper text-brand-ink shadow-[0_10px_24px_rgba(74,56,37,0.08)]'
+                      : 'text-brand-ink-soft hover:bg-white/35 hover:text-brand-ink',
+                  ]}
+                  href={link.href}
+                  aria-current={pathname === link.href ? 'page' : undefined}
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
 
-      <div class="flex flex-wrap gap-3">
-        <Button href={site.secondaryCta.href} variant="secondary" target="_blank" rel="noreferrer">{site.secondaryCta.label}</Button>
-        <Button href={site.primaryCta.href}>{site.primaryCta.label}</Button>
+        <div class="flex flex-wrap gap-3">
+          <Button href={site.secondaryCta.href} variant="secondary" target="_blank" rel="noreferrer">{site.secondaryCta.label}</Button>
+          <Button href={site.primaryCta.href}>{site.primaryCta.label}</Button>
+        </div>
       </div>
     </div>
   </Container>

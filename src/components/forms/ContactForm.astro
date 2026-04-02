@@ -9,7 +9,7 @@ interface Props {
 const { title, intro } = Astro.props;
 ---
 
-<section class="rounded-[2rem] border border-brand-olive/10 bg-brand-paper p-8 shadow-[0_20px_50px_rgba(74,86,57,0.04)]">
+<section class="rounded-[2rem] surface-card p-8 md:p-10">
   <h2 class="font-display text-3xl text-brand-ink">{title}</h2>
   <p class="mt-4 text-base leading-7 text-brand-ink-soft">{intro}</p>
 
@@ -18,22 +18,22 @@ const { title, intro } = Astro.props;
 
     <label class="grid gap-2 text-sm font-medium text-brand-ink">
       Nombre
-      <input class="rounded-2xl border border-brand-olive/15 bg-brand-cream px-4 py-3 text-base text-brand-ink outline-none transition focus:border-brand-olive/40" name="name" required type="text" />
+      <input class="rounded-2xl border border-brand-olive/15 bg-brand-paper px-4 py-3 text-base text-brand-ink outline-none transition focus:border-brand-ochre/35 focus:shadow-[0_0_0_4px_rgba(184,137,77,0.12)]" name="name" required type="text" />
     </label>
 
     <label class="grid gap-2 text-sm font-medium text-brand-ink">
       Email
-      <input class="rounded-2xl border border-brand-olive/15 bg-brand-cream px-4 py-3 text-base text-brand-ink outline-none transition focus:border-brand-olive/40" name="email" required type="email" />
+      <input class="rounded-2xl border border-brand-olive/15 bg-brand-paper px-4 py-3 text-base text-brand-ink outline-none transition focus:border-brand-ochre/35 focus:shadow-[0_0_0_4px_rgba(184,137,77,0.12)]" name="email" required type="email" />
     </label>
 
     <label class="grid gap-2 text-sm font-medium text-brand-ink">
       Tipo de negocio
-      <input class="rounded-2xl border border-brand-olive/15 bg-brand-cream px-4 py-3 text-base text-brand-ink outline-none transition focus:border-brand-olive/40" name="business" type="text" />
+      <input class="rounded-2xl border border-brand-olive/15 bg-brand-paper px-4 py-3 text-base text-brand-ink outline-none transition focus:border-brand-ochre/35 focus:shadow-[0_0_0_4px_rgba(184,137,77,0.12)]" name="business" type="text" />
     </label>
 
     <label class="grid gap-2 text-sm font-medium text-brand-ink">
       ¿En qué necesitas apoyo?
-      <textarea class="min-h-36 rounded-2xl border border-brand-olive/15 bg-brand-cream px-4 py-3 text-base text-brand-ink outline-none transition focus:border-brand-olive/40" name="message" required></textarea>
+      <textarea class="min-h-36 rounded-2xl border border-brand-olive/15 bg-brand-paper px-4 py-3 text-base text-brand-ink outline-none transition focus:border-brand-ochre/35 focus:shadow-[0_0_0_4px_rgba(184,137,77,0.12)]" name="message" required></textarea>
     </label>
 
     <div class="pt-2">

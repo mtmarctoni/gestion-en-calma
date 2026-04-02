@@ -8,83 +8,61 @@ interface Props {
 
 const { data } = Astro.props;
 
-// Outcome icons
-const outcomeIcons = [
-  // Peace of mind
-  `<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="2" stroke-opacity="0.3"/>
-    <path d="M16 24 L21 29 L32 18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-  </svg>`,
-  // Time gained
-  `<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="24" cy="24" r="18" stroke="currentColor" stroke-width="2" stroke-opacity="0.3"/>
-    <circle cx="24" cy="24" r="3" fill="currentColor" fill-opacity="0.5"/>
-    <path d="M24 24 L24 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-    <path d="M24 24 L32 28" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-opacity="0.7"/>
-  </svg>`,
-  // Growth
-  `<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M24 40 L24 20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-    <path d="M24 30 Q18 26, 16 20" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
-    <path d="M24 25 Q30 21, 32 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
-    <ellipse cx="16" cy="18" rx="5" ry="4" fill="currentColor" fill-opacity="0.4"/>
-    <ellipse cx="32" cy="13" rx="5" ry="4" fill="currentColor" fill-opacity="0.4"/>
-    <ellipse cx="24" cy="20" rx="3" ry="2.5" fill="currentColor" fill-opacity="0.5"/>
-  </svg>`,
-  // Organization
-  `<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="12" y="14" width="10" height="10" rx="2" fill="currentColor" fill-opacity="0.3"/>
-    <rect x="26" y="14" width="10" height="10" rx="2" fill="currentColor" fill-opacity="0.4"/>
-    <rect x="12" y="28" width="10" height="10" rx="2" fill="currentColor" fill-opacity="0.4"/>
-    <rect x="26" y="28" width="10" height="10" rx="2" fill="currentColor" fill-opacity="0.3"/>
-  </svg>`,
-  // Balance
-  `<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <line x1="8" y1="24" x2="40" y2="24" stroke="currentColor" stroke-width="2" stroke-opacity="0.4"/>
-    <circle cx="16" cy="24" r="6" fill="currentColor" fill-opacity="0.3"/>
-    <circle cx="32" cy="24" r="6" fill="currentColor" fill-opacity="0.3"/>
-    <line x1="24" y1="10" x2="24" y2="38" stroke="currentColor" stroke-width="2" stroke-opacity="0.4"/>
-  </svg>`,
-  // Clarity
-  `<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="24" cy="24" r="8" fill="currentColor" fill-opacity="0.4"/>
-    <circle cx="24" cy="24" r="15" stroke="currentColor" stroke-width="1.5" stroke-opacity="0.3"/>
-    <circle cx="24" cy="24" r="22" stroke="currentColor" stroke-width="1" stroke-opacity="0.2"/>
-  </svg>`,
+// Positive outcome images
+const outcomeImages = [
+  "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=400&q=80", // Peace/meditation
+  "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=400&q=80", // Time/coffee
+  "https://images.unsplash.com/photo-1449247709967-d4461a6a6103?w=400&q=80", // Growth/plant
+  "https://images.unsplash.com/photo-1456324504439-367cee3b3c32?w=400&q=80", // Organized
+  "https://images.unsplash.com/photo-1515023115689-589c33041d3c?w=400&q=80", // Balance
+  "https://images.unsplash.com/photo-1517842645767-c639042777db?w=400&q=80", // Clarity/workspace
 ];
 ---
 
-<section class="relative py-20 md:py-28 bg-brand-terracotta/5 overflow-hidden">
-  <!-- Decorative organic shapes -->
-  <div class="absolute top-10 right-0 w-64 h-64 opacity-20">
-    <svg viewBox="0 0 200 200" class="w-full h-full text-brand-terracotta" aria-hidden="true">
-      <path d="M100,20 C150,20 180,60 180,100 C180,140 150,180 100,180 C50,180 20,140 20,100 C20,60 50,20 100,20" fill="currentColor" fill-opacity="0.2"/>
-      <circle cx="70" cy="70" r="25" fill="currentColor" fill-opacity="0.15"/>
-      <circle cx="130" cy="120" r="30" fill="currentColor" fill-opacity="0.15"/>
-    </svg>
+<section class="relative py-24 md:py-32 overflow-hidden">
+  <!-- Background image -->
+  <div class="absolute inset-0">
+    <img 
+      src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80" 
+      alt="" 
+      class="w-full h-full object-cover opacity-10"
+    />
+    <div class="absolute inset-0 bg-gradient-to-b from-brand-background via-brand-terracotta/5 to-brand-background"></div>
   </div>
-  
+
   <Container class="relative z-10">
     <!-- Section header -->
     <div class="text-center max-w-2xl mx-auto mb-16">
       <span class="inline-block mb-4 px-4 py-2 rounded-full bg-brand-terracotta/15 text-brand-terracotta text-xs font-bold tracking-wider uppercase">
         Resultados
       </span>
-      <h2 class="text-4xl md:text-5xl font-bold text-brand-text">{data.title}</h2>
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-brand-text">{data.title}</h2>
     </div>
 
-    <!-- Outcomes grid - visual icons with minimal text -->
+    <!-- Outcomes grid with images -->
     <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
       {data.items.map((item, index) => (
-        <div class="group bg-white rounded-3xl p-8 shadow-soft hover:shadow-warm transition-all duration-300 border border-brand-terracotta/10">
-          <div class="flex items-start gap-4">
-            <!-- Icon -->
-            <div class="w-14 h-14 rounded-2xl bg-brand-terracotta/10 flex items-center justify-center flex-shrink-0 text-brand-terracotta group-hover:scale-110 transition-transform">
-              <div class="w-8 h-8" set:html={outcomeIcons[index % 6]} />
-            </div>
+        <div class="group bg-white rounded-3xl overflow-hidden shadow-soft hover:shadow-warm transition-all duration-300">
+          {/* Image */}
+          <div class="relative h-32 overflow-hidden">
+            <img 
+              src={outcomeImages[index % 6]} 
+              alt=""
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
             
-            <!-- Text -->
-            <p class="text-lg font-bold text-brand-text leading-snug pt-1">{item}</p>
+            {/* Icon badge */}
+            <div class="absolute bottom-4 left-4 w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center">
+              <svg class="w-5 h-5 text-brand-terracotta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M5 13l4 4L19 7"/>
+              </svg>
+            </div>
+          </div>
+          
+          {/* Content */}
+          <div class="p-6">
+            <p class="text-lg font-bold text-brand-text leading-snug">{item}</p>
           </div>
         </div>
       ))}

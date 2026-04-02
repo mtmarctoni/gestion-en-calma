@@ -11,85 +11,65 @@ interface Props {
 const { data, founderName = 'Yolanda' } = Astro.props;
 ---
 
-<section class="relative section-teal py-20 md:py-28 overflow-hidden">
-  <!-- Decorative background elements -->
-  <div class="absolute inset-0 overflow-hidden pointer-events-none">
-    <div class="absolute top-0 right-0 w-[40vw] h-[40vw] rounded-full bg-brand-blush/20 blur-3xl"></div>
-    <div class="absolute bottom-0 left-0 w-[30vw] h-[30vw] rounded-full bg-brand-olive/15 blur-3xl"></div>
-    
-    <!-- Botanical decoration -->
-    <svg class="absolute top-[10%] left-[5%] w-40 h-40 text-brand-olive/20" viewBox="0 0 100 100" aria-hidden="true">
-      <path d="M50,20 Q30,40 50,60 Q70,40 50,20" fill="currentColor" fill-opacity="0.3"/>
-      <path d="M50,60 Q30,80 50,100 Q70,80 50,60" fill="currentColor" fill-opacity="0.3"/>
-      <circle cx="50" cy="40" r="8" fill="currentColor" fill-opacity="0.4"/>
-      <circle cx="40" cy="70" r="6" fill="currentColor" fill-opacity="0.4"/>
-      <circle cx="60" cy="75" r="5" fill="currentColor" fill-opacity="0.4"/>
-    </svg>
+<section class="relative py-24 md:py-32 overflow-hidden bg-brand-teal/5">
+  <!-- Background botanical decoration -->
+  <div class="absolute top-0 right-0 w-1/2 h-full opacity-30">
+    <img 
+      src="https://images.unsplash.com/photo-1463936575829-25148e1db1b8?w=1200&q=80" 
+      alt="" 
+      class="w-full h-full object-cover"
+    />
+    <div class="absolute inset-0 bg-gradient-to-l from-transparent to-brand-background"></div>
   </div>
 
   <Container class="relative z-10">
-    <div class="grid gap-12 lg:grid-cols-2 lg:items-center">
-      <!-- Image side - Founder photo placeholder with botanical frame -->
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <!-- Image column -->
       <div class="relative order-2 lg:order-1">
         <div class="relative max-w-md mx-auto lg:mx-0">
-          <!-- Decorative botanical frame -->
-          <div class="absolute -top-6 -left-6 w-32 h-32">
-            <svg viewBox="0 0 100 100" class="w-full h-full text-brand-terracotta/30" aria-hidden="true">
-              <path d="M50,10 C30,10 10,30 10,50 C10,70 30,90 50,90 C70,90 90,70 90,50 C90,30 70,10 50,10" fill="none" stroke="currentColor" stroke-width="2"/>
-              <circle cx="30" cy="30" r="5" fill="currentColor"/>
-              <circle cx="70" cy="35" r="4" fill="currentColor"/>
-              <circle cx="65" cy="70" r="6" fill="currentColor"/>
-              <circle cx="35" cy="65" r="4" fill="currentColor"/>
-            </svg>
+          <!-- Main portrait -->
+          <div class="relative aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl">
+            <img 
+              src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80" 
+              alt={`${founderName} - Fundadora de Gestión en Calma`}
+              class="w-full h-full object-cover"
+            />
+            <!-- Warm overlay -->
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-terracotta/20 via-transparent to-transparent"></div>
           </div>
           
-          <div class="absolute -bottom-4 -right-4 w-40 h-40">
-            <svg viewBox="0 0 100 100" class="w-full h-full text-brand-olive/30" aria-hidden="true">
-              <path d="M20,50 Q40,20 50,50 Q60,80 80,50" fill="none" stroke="currentColor" stroke-width="2"/>
-              <path d="M20,60 Q40,30 50,60 Q60,90 80,60" fill="none" stroke="currentColor" stroke-width="2"/>
-              <circle cx="35" cy="35" r="3" fill="currentColor"/>
-              <circle cx="55" cy="45" r="4" fill="currentColor"/>
-            </svg>
+          <!-- Floating detail image -->
+          <div class="absolute -bottom-6 -right-6 w-40 h-40 rounded-2xl overflow-hidden shadow-xl border-4 border-white">
+            <img 
+              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80" 
+              alt="Detalle de trabajo en calma"
+              class="w-full h-full object-cover"
+            />
           </div>
           
-          <!-- Main image container -->
-          <div class="relative aspect-[4/5] rounded-3xl overflow-hidden bg-gradient-to-br from-brand-terracotta via-brand-warm to-brand-blush p-1">
-            <div class="w-full h-full rounded-3xl overflow-hidden bg-brand-background flex items-center justify-center">
-              <!-- Placeholder for founder photo - calming portrait -->
-              <div class="text-center p-8">
-                <div class="w-32 h-32 mx-auto mb-6 rounded-full bg-brand-blush/50 flex items-center justify-center">
-                  <svg class="w-20 h-20 text-brand-terracotta/50" viewBox="0 0 100 100" fill="currentColor" aria-hidden="true">
-                    <circle cx="50" cy="35" r="20"/>
-                    <ellipse cx="50" cy="85" rx="35" ry="25"/>
-                  </svg>
-                </div>
-                <p class="text-lg font-bold text-brand-text">{founderName}</p>
-                <p class="text-sm text-brand-text-muted mt-2">Fotografía próximamente</p>
-              </div>
-            </div>
-          </div>
+          <!-- Decorative accent -->
+          <div class="absolute -top-4 -left-4 w-24 h-24 bg-brand-blush/50 rounded-full blur-xl"></div>
+          <div class="absolute top-1/2 -left-8 w-16 h-16 bg-brand-olive/30 rounded-full blur-lg"></div>
         </div>
       </div>
 
-      <!-- Content side - minimal text -->
+      <!-- Content column -->
       <div class="order-1 lg:order-2">
-        <span class="inline-block mb-4 px-4 py-2 rounded-full bg-brand-terracotta/20 text-brand-terracotta text-xs font-bold tracking-wider uppercase">
+        <span class="inline-block mb-4 px-4 py-2 rounded-full bg-white shadow-sm text-brand-teal text-xs font-bold tracking-wider uppercase">
           Sobre mí
         </span>
         
-        <h2 class="text-4xl md:text-5xl font-bold text-brand-text mb-6 leading-tight">
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-brand-text mb-6 leading-tight">
           {data.title}
         </h2>
         
-        <div class="space-y-4 text-lg leading-relaxed text-brand-text-soft">
+        <div class="space-y-4 text-lg leading-relaxed text-brand-text-soft mb-8">
           {data.body.slice(0, 2).map((paragraph) => (
             <p>{paragraph}</p>
           ))}
         </div>
         
-        <div class="mt-8">
-          <Button href="/sobre-mi/" variant="secondary">Conocer más</Button>
-        </div>
+        <Button href="/sobre-mi/" variant="secondary">Conocer más</Button>
       </div>
     </div>
   </Container>

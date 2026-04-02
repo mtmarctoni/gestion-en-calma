@@ -7,29 +7,29 @@ interface Props {
 
 const { items } = Astro.props;
 
-// Checkmark icons in different colors
+// Colorful checkmark backgrounds
 const checkColors = [
-  'text-brand-terracotta',
-  'text-brand-teal',
-  'text-brand-olive',
+  'bg-brand-terracotta',
+  'bg-brand-teal', 
+  'bg-brand-olive',
 ];
 ---
 
-<section class="relative py-12 overflow-hidden">
+<section class="relative py-16 overflow-hidden">
   <Container>
-    <div class="bg-white/80 backdrop-blur-sm rounded-3xl border border-brand-secondary/50 shadow-soft p-8">
-      <div class="grid gap-6 md:grid-cols-3">
+    <div class="bg-white rounded-3xl shadow-soft p-8 md:p-10 border border-brand-secondary/30">
+      <div class="grid gap-8 md:grid-cols-3">
         {items.map((item, index) => (
-          <div class="flex items-center gap-4">
-            <!-- Colored checkmark -->
-            <div class={`w-10 h-10 rounded-full bg-brand-secondary/50 flex items-center justify-center flex-shrink-0 ${checkColors[index % 3]}`}>
-              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <div class="flex items-center gap-5">
+            {/* Icon with colored background */}
+            <div class={`w-14 h-14 rounded-2xl ${checkColors[index % 3]} flex items-center justify-center flex-shrink-0 shadow-md`}>
+              <svg class="w-7 h-7 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M20 6L9 17l-5-5"/>
               </svg>
             </div>
             
-            <!-- Text -->
-            <span class="font-bold text-brand-text">{item}</span>
+            {/* Text */}
+            <span class="font-bold text-brand-text text-lg leading-snug">{item}</span>
           </div>
         ))}
       </div>

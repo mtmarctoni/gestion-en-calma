@@ -1,6 +1,5 @@
 ---
 import Container from '@/components/ui/Container.astro';
-import SectionHeading from '@/components/ui/SectionHeading.astro';
 import type { Service } from '@/data/fallbackContent';
 
 interface Props {
@@ -11,33 +10,116 @@ interface Props {
 }
 
 const { eyebrow, title, intro, services } = Astro.props;
+
+// Service icons - calming botanical/organic shapes
+const serviceIcons = [
+  // Icon 1: Organized leaves
+  `<svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M30 10 C20 20, 15 30, 30 50 C45 30, 40 20, 30 10" fill="currentColor" fill-opacity="0.6"/>
+    <path d="M30 50 L30 55" stroke="currentColor" stroke-width="2"/>
+    <path d="M25 25 C20 28, 18 32, 25 40" stroke="currentColor" stroke-width="1.5" stroke-opacity="0.5" fill="none"/>
+    <path d="M35 25 C40 28, 42 32, 35 40" stroke="currentColor" stroke-width="1.5" stroke-opacity="0.5" fill="none"/>
+  </svg>`,
+  // Icon 2: Gentle waves/flow
+  `<svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M10 25 Q20 20, 30 25 T50 25" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <path d="M10 35 Q20 30, 30 35 T50 35" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-opacity="0.7"/>
+    <path d="M10 45 Q20 40, 30 45 T50 45" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-opacity="0.4"/>
+  </svg>`,
+  // Icon 3: Connected circles (network/harmony)
+  `<svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="20" cy="25" r="8" fill="currentColor" fill-opacity="0.4"/>
+    <circle cx="40" cy="25" r="8" fill="currentColor" fill-opacity="0.4"/>
+    <circle cx="30" cy="42" r="8" fill="currentColor" fill-opacity="0.4"/>
+    <line x1="26" y1="28" x2="34" y2="28" stroke="currentColor" stroke-width="1.5" stroke-opacity="0.5"/>
+    <line x1="23" y1="31" x2="27" y2="38" stroke="currentColor" stroke-width="1.5" stroke-opacity="0.5"/>
+    <line x1="37" y1="31" x2="33" y2="38" stroke="currentColor" stroke-width="1.5" stroke-opacity="0.5"/>
+  </svg>`,
+  // Icon 4: Calm sun/flower
+  `<svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="30" cy="30" r="10" fill="currentColor" fill-opacity="0.5"/>
+    <ellipse cx="30" cy="12" rx="4" ry="8" fill="currentColor" fill-opacity="0.3"/>
+    <ellipse cx="30" cy="48" rx="4" ry="8" fill="currentColor" fill-opacity="0.3"/>
+    <ellipse cx="12" cy="30" rx="8" ry="4" fill="currentColor" fill-opacity="0.3"/>
+    <ellipse cx="48" cy="30" rx="8" ry="4" fill="currentColor" fill-opacity="0.3"/>
+    <ellipse cx="17" cy="17" rx="4" ry="6" transform="rotate(-45 17 17)" fill="currentColor" fill-opacity="0.3"/>
+    <ellipse cx="43" cy="43" rx="4" ry="6" transform="rotate(-45 43 43)" fill="currentColor" fill-opacity="0.3"/>
+  </svg>`,
+];
+
+// Alternate background colors for cards
+const cardStyles = [
+  { bg: 'bg-white', iconColor: 'text-brand-olive', accent: 'bg-brand-olive/10' },
+  { bg: 'bg-white', iconColor: 'text-brand-teal', accent: 'bg-brand-teal/10' },
+  { bg: 'bg-white', iconColor: 'text-brand-terracotta', accent: 'bg-brand-terracotta/10' },
+  { bg: 'bg-white', iconColor: 'text-brand-blush-deep', accent: 'bg-brand-blush/20' },
+];
 ---
 
-<section class="py-14 md:py-20">
-  <Container>
-    <SectionHeading eyebrow={eyebrow} title={title} intro={intro} />
+<section class="relative py-20 md:py-28 overflow-hidden">
+  <!-- Background decoration - subtle organic wave -->
+  <div class="absolute inset-0 bg-gradient-to-b from-brand-background via-brand-olive/5 to-brand-background"></div>
+  
+  <!-- Decorative botanical elements -->
+  <div class="absolute top-20 right-10 w-48 h-48 opacity-30">
+    <svg viewBox="0 0 100 100" fill="none" class="w-full h-full text-brand-olive" aria-hidden="true">
+      <path d="M50,100 C50,70 80,50 80,30 C80,10 60,5 50,20" stroke="currentColor" stroke-width="1.5" fill="none"/>
+      <ellipse cx="50" cy="20" rx="12" ry="8" fill="currentColor" fill-opacity="0.3"/>
+      <ellipse cx="75" cy="35" rx="10" ry="7" fill="currentColor" fill-opacity="0.3"/>
+      <ellipse cx="65" cy="60" rx="8" ry="6" fill="currentColor" fill-opacity="0.3"/>
+    </svg>
+  </div>
+  
+  <div class="absolute bottom-20 left-10 w-40 h-40 opacity-30">
+    <svg viewBox="0 0 100 100" fill="none" class="w-full h-full text-brand-blush-deep" aria-hidden="true">
+      <circle cx="50" cy="50" r="30" fill="currentColor" fill-opacity="0.2"/>
+      <circle cx="30" cy="35" r="15" fill="currentColor" fill-opacity="0.2"/>
+      <circle cx="70" cy="40" r="12" fill="currentColor" fill-opacity="0.2"/>
+      <circle cx="60" cy="70" r="10" fill="currentColor" fill-opacity="0.2"/>
+    </svg>
+  </div>
 
-    <div class="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-      {services.map((service) => (
-        <article class="surface-card-soft flex h-full flex-col p-6 transition-all duration-200 hover:shadow-warm">
-          <h3 class="text-xl font-bold text-brand-text">{service.title}</h3>
-          <p class="mt-4 text-base leading-7 text-brand-text-soft">{service.shortDescription}</p>
+  <Container class="relative z-10">
+    <!-- Section header - minimal -->
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      {eyebrow && (
+        <span class="inline-block mb-4 px-4 py-2 rounded-full bg-brand-olive/15 text-brand-olive text-xs font-bold tracking-wider uppercase">
+          {eyebrow}
+        </span>
+      )}
+      <h2 class="text-4xl md:text-5xl font-bold text-brand-text mb-4">{title}</h2>
+      {intro && <p class="text-lg text-brand-text-soft">{intro}</p>}
+    </div>
 
-          <ul class="mt-5 space-y-2 text-sm text-brand-text-soft">
-            {service.outcomes.slice(0, 3).map((outcome) => (
-              <li class="flex gap-3">
-                <span class="mt-2 inline-flex h-2 w-2 rounded-full bg-brand-primary"></span>
-                <span>{outcome}</span>
-              </li>
-            ))}
-          </ul>
-
-          <div class="mt-6 pt-3">
-            <a class="font-bold text-brand-warm transition hover:text-brand-text" href={`/servicios/${service.slug}/`}>
-              Ver servicio →
-            </a>
+    <!-- Services grid - visual cards with icons -->
+    <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+      {services.map((service, index) => (
+        <a 
+          href={`/servicios/${service.slug}/`}
+          class={`group ${cardStyles[index % 4].bg} rounded-3xl p-8 shadow-soft hover:shadow-warm transition-all duration-300 border border-brand-secondary/30 hover:border-brand-olive/30 flex flex-col h-full`}
+        >
+          <!-- Icon -->
+          <div class={`w-16 h-16 rounded-2xl ${cardStyles[index % 4].accent} flex items-center justify-center mb-6 ${cardStyles[index % 4].iconColor}`}>
+            <div class="w-10 h-10" set:html={serviceIcons[index % 4]} />
           </div>
-        </article>
+          
+          <!-- Content - minimal -->
+          <h3 class="text-xl font-bold text-brand-text mb-3 group-hover:text-brand-terracotta transition-colors">
+            {service.title}
+          </h3>
+          
+          <p class="text-brand-text-soft leading-relaxed flex-grow">
+            {service.shortDescription}
+          </p>
+          
+          <!-- Arrow indicator -->
+          <div class="mt-6 flex items-center text-brand-terracotta font-bold text-sm group-hover:translate-x-1 transition-transform">
+            Saber más 
+            <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </div>
+        </a>
       ))}
     </div>
   </Container>

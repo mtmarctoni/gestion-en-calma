@@ -8,19 +8,35 @@
 
 ## Color Palette
 
-### Primary Colors (Use these as defaults)
+### Primary Colors
 | Name | Hex | Usage |
 |------|-----|-------|
-| Amarillo Girasol | `#F7BC1E` | Primary action color, CTAs, highlights, accents |
+| Amarillo Girasol | `#F7BC1E` | Primary action color, main CTAs, dominant accents |
 | Crema Suave | `#FDE8A4` | Card backgrounds, secondary surfaces, soft fills |
 | Blanco Hueso | `#F9F7F2` | Main page background, base surface |
 
-### Secondary Colors (Use for variety and depth)
+### Warm Accents (Instagram-inspired)
 | Name | Hex | Usage |
 |------|-----|-------|
 | Naranja Melocotón | `#EEA45D` | Hover states, secondary buttons, warm accents |
-| Rosa Pastel | `#F5B7B1` | Soft accents, tags, subtle highlights, alternative cards |
+| Terracotta | `#D4755F` | Bold accent panels, creative sections, energy |
+| Terracotta Light | `#E08B77` | Soft terracotta backgrounds |
+
+### Cool Accents (From Instagram visual style)
+| Name | Hex | Usage |
+|------|-----|-------|
+| Teal/Turquesa | `#5A8A8A` | Calming sections, alternate panels, variety |
+| Teal Light | `#7BA3A3` | Soft teal backgrounds, decorative elements |
 | Verde Eucalipto | `#73938B` | Muted actions, tertiary elements, calming touches |
+| Verde Oliva | `#8B9A6D` | Natural accents, organic feel |
+| Oliva Light | `#A3B085` | Soft olive backgrounds |
+
+### Soft Accents
+| Name | Hex | Usage |
+|------|-----|-------|
+| Rosa Pastel | `#F5B7B1` | Soft highlights, tags, gentle accents |
+| Blush/Rosa Pálido | `#E8C4C4` | Feminine touches, soft panels, alternative cards |
+| Blush Deep | `#D9A8A8` | Deeper pink accents |
 
 ### Text Colors
 | Name | Hex | Usage |
@@ -30,15 +46,30 @@
 | Text Muted | `#8B7355` | Captions, labels, metadata |
 
 ### CSS Variable Mapping
-Always use these semantic tokens in CSS/components:
-- `--color-brand-primary` = Amarillo Girasol (`#F7BC1E`)
-- `--color-brand-secondary` = Crema Suave (`#FDE8A4`)
-- `--color-brand-background` = Blanco Hueso (`#F9F7F2`)
-- `--color-brand-warm` = Naranja Melocotón (`#EEA45D`)
-- `--color-brand-soft` = Rosa Pastel (`#F5B7B1`)
-- `--color-brand-muted` = Verde Eucalipto (`#73938B`)
-- `--color-brand-text` = `#2C2416`
-- `--color-brand-text-soft` = `#5C4D3C`
+```css
+/* Core */
+--color-brand-primary: #F7BC1E;
+--color-brand-secondary: #FDE8A4;
+--color-brand-background: #F9F7F2;
+--color-brand-warm: #EEA45D;
+--color-brand-soft: #F5B7B1;
+--color-brand-muted: #73938B;
+
+/* Extended Instagram Palette */
+--color-brand-teal: #5A8A8A;
+--color-teal-light: #7BA3A3;
+--color-brand-terracotta: #D4755F;
+--color-terracotta-light: #E08B77;
+--color-brand-olive: #8B9A6D;
+--color-olive-light: #A3B085;
+--color-brand-blush: #E8C4C4;
+--color-blush-deep: #D9A8A8;
+
+/* Text */
+--color-brand-text: #2C2416;
+--color-brand-text-soft: #5C4D3C;
+--color-brand-text-muted: #8B7355;
+```
 
 ## Typography
 
@@ -51,24 +82,42 @@ Always use these semantic tokens in CSS/components:
 ### Font Loading
 Import via: `import '@fontsource/courier-prime';` in BaseLayout.astro
 
-### Typography Patterns
-- **Headings**: Use same font family, weight 700, tight line-height
-- **Body**: Use same font family, weight 400, comfortable line-height
-- **Buttons/Labels**: Use same font family, weight 600, uppercase for labels
-- **No mixing**: Do NOT combine multiple font families. The typewriter aesthetic should be consistent.
-
 ## Visual Application Rules
 
-### Default Color Choices
-1. **Backgrounds**: Always start with Blanco Hueso (`#F9F7F2`)
-2. **Primary Buttons**: Amarillo Girasol (`#F7BC1E`) with dark text (`#2C2416`)
-3. **Cards/Surfaces**: Crema Suave (`#FDE8A4`) or white with warm borders
-4. **Hover States**: Shift toward Naranja Melocotón (`#EEA45D`)
-5. **Accents**: Use Rosa Pastel (`#F5B7B1`) or Verde Eucalipto (`#73938B`) sparingly
+### Multi-Color Strategy
+Use the FULL palette - not just yellow:
+1. **Alternate section colors** - Mix yellow, teal, blush, and olive sections
+2. **Color-coded cards** - Use different surface colors for different content types:
+   - `surface-primary-panel` - Yellow for CTAs and important messages
+   - `surface-teal` - Teal for calm/informational content
+   - `surface-terracotta` - Terracotta for energy and creative sections
+   - `surface-blush` - Blush for soft, approachable content
+   - `surface-olive` - Olive for natural/organic themes
+
+3. **Decorative blobs** - Use colored decorative elements:
+   - `blob-yellow` - Amarillo Girasol
+   - `blob-teal` - Turquesa
+   - `blob-terracotta` - Terracotta
+   - `blob-blush` - Rosa pálido
+   - `blob-olive` - Verde oliva
+
+### Surface Classes Available
+- `surface-card` - Default warm cream
+- `surface-card-soft` - Softer cream
+- `surface-teal` / `surface-teal-light` - Turquoise panels
+- `surface-terracotta` / `surface-terracotta-light` - Coral/orange panels
+- `surface-blush` / `surface-blush-light` - Pink panels
+- `surface-olive` / `surface-olive-light` - Green panels
+- `surface-primary-panel` - Yellow action panels
+
+### Section Backgrounds
+- `section-warm` - Yellow tinted
+- `section-teal` - Teal tinted
+- `section-blush` - Pink tinted
+- `section-olive` - Olive tinted
 
 ### What NOT to Do
-- Do NOT use the old olive/sage green colors (`--color-brand-olive`, `--color-brand-sage`)
-- Do NOT use Inter or Fraunces fonts (old fonts)
-- Do NOT use cool/blue tones
-- Do NOT use gradients that mix cool and warm colors
-- Amarillo Girasol should dominate - it's the brand's energy
+- Do NOT use cool/blue tones (except the teal from our palette)
+- Do NOT use gradients that clash (yellow + teal is OK, yellow + blue is not)
+- Do NOT make every section yellow - alternate colors for visual interest
+- Amarillo Girasol should still be the PRIMARY energy, but not the ONLY color

@@ -1,6 +1,5 @@
 ---
 import Container from '@/components/ui/Container.astro';
-import SectionHeading from '@/components/ui/SectionHeading.astro';
 import type { Testimonial } from '@/data/fallbackContent';
 
 interface Props {
@@ -9,29 +8,89 @@ interface Props {
 
 const { items } = Astro.props;
 const hasPublishedTestimonials = items.some((item) => !item.isPlaceholder);
+
+// Visual quote mark styles
+const quoteColors = [
+  'text-brand-olive/30',
+  'text-brand-teal/30',
+  'text-brand-terracotta/30',
+  'text-brand-blush-deep/50',
+];
 ---
 
-<section class="py-14 md:py-20">
-  <Container>
-    <SectionHeading
-      eyebrow="Confianza"
-      title={hasPublishedTestimonials ? 'Testimonios y referencias' : 'Experiencia y referencias'}
-      intro={
-        hasPublishedTestimonials
-          ? 'La mejor forma de entender cómo trabaja Yolanda es ver qué cambia cuando alguien deja de cargar con toda la gestión sola.'
-          : 'Mientras reunimos testimonios publicables, este espacio deja claro algo importante: aquí no se promete humo, se trabaja con experiencia, orden y criterio.'
-      }
-    />
+<section class="relative py-20 md:py-28 overflow-hidden bg-gradient-to-b from-brand-background via-brand-secondary/20 to-brand-background">
+  <!-- Decorative background elements -->
+  <div class="absolute top-20 left-10 w-64 h-64 opacity-30">
+    <svg viewBox="0 0 200 200" class="w-full h-full text-brand-blush" aria-hidden="true">
+      <circle cx="100" cy="100" r="80" fill="currentColor" fill-opacity="0.15"/>
+      <circle cx="60" cy="70" r="40" fill="currentColor" fill-opacity="0.1"/>
+      <circle cx="140" cy="130" r="50" fill="currentColor" fill-opacity="0.1"/>
+    </svg>
+  </div>
+  
+  <div class="absolute bottom-20 right-10 w-48 h-48 opacity-25">
+    <svg viewBox="0 0 100 100" class="w-full h-full text-brand-olive" aria-hidden="true">
+      <path d="M20,50 Q40,20 50,50 Q60,80 80,50" stroke="currentColor" stroke-width="2" fill="none" stroke-opacity="0.4"/>
+      <path d="M20,60 Q40,30 50,60 Q60,90 80,60" stroke="currentColor" stroke-width="2" fill="none" stroke-opacity="0.4"/>
+    </svg>
+  </div>
 
-    <div class="mt-10 grid gap-5 lg:grid-cols-2">
-      {items.map((item) => (
-        <article class="surface-card-soft p-6 relative">
-          <div class="absolute right-4 top-4 text-6xl font-bold text-brand-primary/20">"</div>
-          <p class="text-lg leading-8 text-brand-text-soft relative z-10">{item.quote}</p>
-          <p class="mt-6 font-bold text-brand-text">{item.name}</p>
-          {item.role && <p class="mt-1 text-sm text-brand-text-muted">{item.role}</p>}
-        </article>
+  <Container class="relative z-10">
+    <!-- Section header - minimal -->
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <span class="inline-block mb-4 px-4 py-2 rounded-full bg-brand-olive/15 text-brand-olive text-xs font-bold tracking-wider uppercase">
+        Confianza
+      </span>
+      <h2 class="text-4xl md:text-5xl font-bold text-brand-text mb-4">
+        {hasPublishedTestimonials ? 'Testimonios' : 'Experiencia'}
+      </h2>
+      <p class="text-lg text-brand-text-soft">
+        {hasPublishedTestimonials
+          ? 'Lo que dicen quienes han trabajado con Gestión en Calma'
+          : 'Compromiso real con cada proyecto'}
+      </p>
+    </div>
+
+    <!-- Testimonials grid - visual cards with large quotes -->
+    <div class="grid gap-6 lg:grid-cols-2">
+      {items.map((item, index) => (
+        <div class={`relative bg-white rounded-3xl p-8 md:p-10 shadow-soft hover:shadow-warm transition-all duration-300 ${index % 2 === 0 ? 'lg:translate-y-4' : ''}`}>
+          <!-- Large decorative quote mark -->
+          <div class={`absolute top-6 left-8 text-8xl font-serif leading-none ${quoteColors[index % 4]}`} aria-hidden="true">"</div>
+          
+          <!-- Quote content -->
+          <blockquote class="relative z-10 pt-8">
+            <p class="text-xl md:text-2xl text-brand-text leading-relaxed font-medium">
+              {item.quote}
+            </p>
+          </blockquote>
+          
+          <!-- Author info -->
+          <div class="mt-8 pt-6 border-t border-brand-secondary/50 flex items-center gap-4">
+            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-brand-blush to-brand-terracotta/30 flex items-center justify-center text-brand-text font-bold text-lg">
+              {item.name.charAt(0)}
+            </div>
+            <div>
+              <p class="font-bold text-brand-text">{item.name}</p>
+              {item.role && <p class="text-sm text-brand-text-muted">{item.role}</p>}
+            </div>
+          </div>
+        </div>
       ))}
     </div>
+    
+    {/* Empty state illustration if no testimonials */}
+    {!hasPublishedTestimonials && (
+      <div class="mt-12 text-center">
+        <div class="inline-flex items-center gap-4 px-8 py-4 rounded-full bg-white shadow-soft">
+          <div class="w-12 h-12 rounded-full bg-brand-olive/10 flex items-center justify-center">
+            <svg class="w-6 h-6 text-brand-olive" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 3v18M3 12h18"/>
+            </svg>
+          </div>
+          <p class="text-brand-text-soft">Próximamente compartiremos experiencias reales</p>
+        </div>
+      </div>
+    )}
   </Container>
 </section>

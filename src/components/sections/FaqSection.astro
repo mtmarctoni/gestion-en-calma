@@ -1,6 +1,5 @@
 ---
 import Container from '@/components/ui/Container.astro';
-import SectionHeading from '@/components/ui/SectionHeading.astro';
 import type { FAQItem } from '@/data/fallbackContent';
 
 interface Props {
@@ -8,22 +7,108 @@ interface Props {
 }
 
 const { items } = Astro.props;
+
+// FAQ category icons
+const faqIcons = [
+  // Process
+  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="10"/>
+    <path d="M12 6v6l4 2"/>
+  </svg>`,
+  // Pricing
+  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="10"/>
+    <path d="M12 8v8M8 12h8"/>
+  </svg>`,
+  // Communication
+  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+  </svg>`,
+  // Start
+  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+  </svg>`,
+];
+
+const faqColors = [
+  { border: 'border-brand-olive/20', bg: 'bg-brand-olive/5', icon: 'text-brand-olive' },
+  { border: 'border-brand-teal/20', bg: 'bg-brand-teal/5', icon: 'text-brand-teal' },
+  { border: 'border-brand-terracotta/20', bg: 'bg-brand-terracotta/5', icon: 'text-brand-terracotta' },
+  { border: 'border-brand-blush-deep/30', bg: 'bg-brand-blush/10', icon: 'text-brand-blush-deep' },
+];
 ---
 
-<section class="py-14 md:py-20">
-  <Container>
-    <SectionHeading eyebrow="Preguntas frecuentes" title="Respuestas rápidas antes de hablar" />
+<section class="relative py-20 md:py-28 overflow-hidden bg-brand-olive/5">
+  <!-- Decorative wave at top -->
+  <div class="absolute top-0 left-0 right-0 h-20 overflow-hidden">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none" class="w-full h-full text-brand-background" aria-hidden="true">
+      <path fill="currentColor" d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,50 1440,40 L1440,0 L0,0 Z"/>
+    </svg>
+  </div>
 
-    <div class="mt-10 space-y-4">
-      {items.map((item) => (
-        <details class="surface-card px-6 py-5 cursor-pointer transition-all hover:shadow-warm">
-          <summary class="list-none font-bold text-brand-text flex items-center justify-between">
-            {item.question}
-            <span class="faq-icon text-brand-primary text-xl font-bold">+</span>
+  <!-- Botanical decoration -->
+  <div class="absolute bottom-10 right-10 w-56 h-56 opacity-20">
+    <svg viewBox="0 0 100 100" class="w-full h-full text-brand-olive" aria-hidden="true">
+      <circle cx="20" cy="20" r="15" fill="currentColor" fill-opacity="0.3"/>
+      <circle cx="80" cy="30" r="12" fill="currentColor" fill-opacity="0.3"/>
+      <circle cx="40" cy="70" r="18" fill="currentColor" fill-opacity="0.3"/>
+      <circle cx="75" cy="80" r="10" fill="currentColor" fill-opacity="0.3"/>
+    </svg>
+  </div>
+
+  <Container class="relative z-10">
+    <!-- Section header -->
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <span class="inline-block mb-4 px-4 py-2 rounded-full bg-brand-olive/15 text-brand-olive text-xs font-bold tracking-wider uppercase">
+        FAQ
+      </span>
+      <h2 class="text-4xl md:text-5xl font-bold text-brand-text mb-4">Preguntas frecuentes</h2>
+      <p class="text-lg text-brand-text-soft">Respuestas rápidas antes de hablar</p>
+    </div>
+
+    <!-- FAQ items - visual cards -->
+    <div class="max-w-3xl mx-auto space-y-4">
+      {items.map((item, index) => (
+        <details class={`group ${faqColors[index % 4].bg} ${faqColors[index % 4].border} border rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-soft`}>
+          <summary class="list-none cursor-pointer p-6 flex items-center gap-4">
+            <!-- Icon -->
+            <div class={`w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center flex-shrink-0 ${faqColors[index % 4].icon}`}>
+              <div class="w-5 h-5" set:html={faqIcons[index % 4]} />
+            </div>
+            
+            <!-- Question -->
+            <span class="flex-grow text-lg font-bold text-brand-text">{item.question}</span>
+            
+            <!-- Expand indicator -->
+            <div class="w-8 h-8 rounded-full bg-white shadow-sm flex items-center justify-center flex-shrink-0 group-open:rotate-45 transition-transform">
+              <svg class="w-4 h-4 text-brand-olive" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M12 5v14M5 12h14"/>
+              </svg>
+            </div>
           </summary>
-          <p class="mt-4 max-w-3xl text-base leading-7 text-brand-text-soft">{item.answer}</p>
+          
+          <!-- Answer -->
+          <div class="px-6 pb-6 pt-2">
+            <div class="pl-14">
+              <p class="text-brand-text-soft leading-relaxed">{item.answer}</p>
+            </div>
+          </div>
         </details>
       ))}
+    </div>
+    
+    <!-- Still have questions CTA -->
+    <div class="mt-12 text-center">
+      <p class="text-brand-text-soft mb-4">¿Tienes otras preguntas?</p>
+      <a 
+        href="/contacto/" 
+        class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-brand-olive text-white font-bold shadow-warm hover:shadow-panel transition-all hover:scale-105"
+      >
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        </svg>
+        Escríbenos
+      </a>
     </div>
   </Container>
 </section>

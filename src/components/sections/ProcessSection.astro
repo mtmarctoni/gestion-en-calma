@@ -1,6 +1,5 @@
 ---
 import Container from '@/components/ui/Container.astro';
-import SectionHeading from '@/components/ui/SectionHeading.astro';
 import type { HomePageData } from '@/data/fallbackContent';
 
 interface Props {
@@ -8,21 +7,98 @@ interface Props {
 }
 
 const { data } = Astro.props;
+
+// Visual step illustrations
+const stepVisuals = [
+  // Step 1: Contact/connection
+  `<svg viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="40" cy="50" r="25" fill="currentColor" fill-opacity="0.2"/>
+    <circle cx="80" cy="50" r="25" fill="currentColor" fill-opacity="0.2"/>
+    <path d="M65 50 L55 50" stroke="currentColor" stroke-width="2" stroke-dasharray="4 2" stroke-opacity="0.5"/>
+    <circle cx="40" cy="50" r="8" fill="currentColor" fill-opacity="0.4"/>
+    <circle cx="80" cy="50" r="8" fill="currentColor" fill-opacity="0.4"/>
+    <ellipse cx="40" cy="35" rx="12" ry="6" fill="currentColor" fill-opacity="0.3"/>
+    <ellipse cx="80" cy="35" rx="12" ry="6" fill="currentColor" fill-opacity="0.3"/>
+  </svg>`,
+  // Step 2: Discovery/analysis
+  `<svg viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="60" cy="50" r="35" stroke="currentColor" stroke-width="2" stroke-opacity="0.3" fill="none"/>
+    <circle cx="60" cy="50" r="20" stroke="currentColor" stroke-width="2" stroke-opacity="0.4" fill="none"/>
+    <circle cx="60" cy="50" r="8" fill="currentColor" fill-opacity="0.5"/>
+    <line x1="60" y1="15" x2="60" y2="30" stroke="currentColor" stroke-width="2" stroke-opacity="0.4"/>
+    <line x1="60" y1="70" x2="60" y2="85" stroke="currentColor" stroke-width="2" stroke-opacity="0.4"/>
+    <line x1="25" y1="50" x2="40" y2="50" stroke="currentColor" stroke-width="2" stroke-opacity="0.4"/>
+    <line x1="80" y1="50" x2="95" y2="50" stroke="currentColor" stroke-width="2" stroke-opacity="0.4"/>
+  </svg>`,
+  // Step 3: Organization/flow
+  `<svg viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="20" y="30" width="25" height="40" rx="3" fill="currentColor" fill-opacity="0.3"/>
+    <rect x="47" y="25" width="25" height="50" rx="3" fill="currentColor" fill-opacity="0.4"/>
+    <rect x="75" y="35" width="25" height="30" rx="3" fill="currentColor" fill-opacity="0.3"/>
+    <path d="M33 50 L47 50" stroke="currentColor" stroke-width="1.5" stroke-opacity="0.5"/>
+    <path d="M72 50 L75 50" stroke="currentColor" stroke-width="1.5" stroke-opacity="0.5"/>
+  </svg>`,
+  // Step 4: Growth/flourish
+  `<svg viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M60 85 L60 50" stroke="currentColor" stroke-width="2" stroke-opacity="0.4"/>
+    <path d="M60 65 Q45 55, 40 40" stroke="currentColor" stroke-width="2" stroke-opacity="0.4" fill="none"/>
+    <path d="M60 55 Q75 45, 80 30" stroke="currentColor" stroke-width="2" stroke-opacity="0.4" fill="none"/>
+    <ellipse cx="40" cy="35" rx="10" ry="8" fill="currentColor" fill-opacity="0.4"/>
+    <ellipse cx="80" cy="28" rx="10" ry="8" fill="currentColor" fill-opacity="0.4"/>
+    <ellipse cx="60" cy="50" rx="6" ry="5" fill="currentColor" fill-opacity="0.5"/>
+    <circle cx="60" cy="85" r="6" fill="currentColor" fill-opacity="0.3"/>
+  </svg>`,
+];
+
+const stepColors = [
+  { bg: 'bg-brand-teal', lightBg: 'bg-brand-teal/10', text: 'text-brand-teal' },
+  { bg: 'bg-brand-olive', lightBg: 'bg-brand-olive/10', text: 'text-brand-olive' },
+  { bg: 'bg-brand-terracotta', lightBg: 'bg-brand-terracotta/10', text: 'text-brand-terracotta' },
+  { bg: 'bg-brand-blush-deep', lightBg: 'bg-brand-blush/20', text: 'text-brand-blush-deep' },
+];
 ---
 
-<section class="py-14 md:py-20">
-  <Container>
-    <SectionHeading title={data.title} />
+<section class="relative py-20 md:py-28 bg-brand-background overflow-hidden">
+  <!-- Decorative background -->
+  <div class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-brand-olive/20 to-transparent"></div>
+  <div class="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-brand-olive/20 to-transparent"></div>
+  
+  <Container class="relative z-10">
+    <!-- Section header -->
+    <div class="text-center max-w-2xl mx-auto mb-20">
+      <span class="inline-block mb-4 px-4 py-2 rounded-full bg-brand-primary/15 text-brand-primary text-xs font-bold tracking-wider uppercase">
+        Cómo trabajo
+      </span>
+      <h2 class="text-4xl md:text-5xl font-bold text-brand-text">{data.title}</h2>
+    </div>
 
-    <div class="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-      {data.steps.map((step, index) => (
-        <article class="surface-card p-6 relative overflow-hidden">
-          <div class="absolute -right-4 -top-4 h-20 w-20 rounded-full bg-brand-primary/10"></div>
-          <p class="text-xs font-bold uppercase tracking-[0.2em] text-brand-primary">Paso {index + 1}</p>
-          <h3 class="mt-4 text-xl font-bold text-brand-text">{step.title}</h3>
-          <p class="mt-4 text-base leading-7 text-brand-text-soft">{step.description}</p>
-        </article>
-      ))}
+    <!-- Process steps - horizontal timeline on desktop -->
+    <div class="relative">
+      <!-- Connecting line -->
+      <div class="hidden lg:block absolute top-[100px] left-[12.5%] right-[12.5%] h-0.5 bg-gradient-to-r from-brand-teal/30 via-brand-olive/30 to-brand-terracotta/30"></div>
+      
+      <div class="grid gap-8 lg:gap-4 lg:grid-cols-4">
+        {data.steps.map((step, index) => (
+          <div class="relative group">
+            <!-- Step card -->
+            <div class="text-center">
+              <!-- Step number bubble -->
+              <div class={`w-12 h-12 mx-auto mb-6 rounded-full ${stepColors[index].bg} text-white flex items-center justify-center text-lg font-bold shadow-lg relative z-10`}>
+                {index + 1}
+              </div>
+              
+              <!-- Visual illustration -->
+              <div class={`w-full max-w-[200px] mx-auto mb-6 rounded-2xl ${stepColors[index].lightBg} p-6 group-hover:scale-105 transition-transform duration-300`}>
+                <div class={`w-full aspect-[6/5] ${stepColors[index].text}`} set:html={stepVisuals[index]} />
+              </div>
+              
+              <!-- Content -->
+              <h3 class="text-xl font-bold text-brand-text mb-3">{step.title}</h3>
+              <p class="text-brand-text-soft leading-relaxed text-sm max-w-xs mx-auto">{step.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   </Container>
 </section>

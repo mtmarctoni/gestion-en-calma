@@ -1,6 +1,5 @@
 ---
 import Container from '@/components/ui/Container.astro';
-import SectionHeading from '@/components/ui/SectionHeading.astro';
 import type { HomePageData } from '@/data/fallbackContent';
 
 interface Props {
@@ -8,17 +7,75 @@ interface Props {
 }
 
 const { data } = Astro.props;
+
+// Client type icons
+const clientIcons = [
+  // Entrepreneur
+  `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="24" cy="16" r="8"/>
+    <path d="M8 40c0-8 8-12 16-12s16 4 16 12"/>
+  </svg>`,
+  // Small business
+  `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 20L24 8l20 12"/>
+    <path d="M8 20v20h10V30h12v10h10V20"/>
+  </svg>`,
+  // Freelancer
+  `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="12" y="8" width="24" height="32" rx="2"/>
+    <line x1="18" y1="16" x2="30" y2="16"/>
+    <line x1="18" y1="24" x2="30" y2="24"/>
+    <line x1="18" y1="32" x2="26" y2="32"/>
+  </svg>`,
+  // Growing business
+  `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M8 40V24l8-4 8 6 8-10 8 4v20"/>
+    <circle cx="16" cy="20" r="3"/>
+    <circle cx="24" cy="26" r="3"/>
+    <circle cx="32" cy="16" r="3"/>
+  </svg>`,
+];
 ---
 
-<section class="py-14 md:py-20">
-  <Container>
-    <SectionHeading title={data.title} intro={data.intro} />
+<section class="relative py-20 md:py-28 overflow-hidden">
+  <!-- Soft background gradient -->
+  <div class="absolute inset-0 bg-gradient-to-b from-brand-blush/10 via-brand-background to-brand-background"></div>
+  
+  <!-- Decorative elements -->
+  <div class="absolute top-20 left-10 w-32 h-32 opacity-20">
+    <svg viewBox="0 0 100 100" class="w-full h-full text-brand-blush-deep" aria-hidden="true">
+      <circle cx="50" cy="50" r="40" fill="currentColor" fill-opacity="0.3"/>
+    </svg>
+  </div>
+  
+  <div class="absolute bottom-20 right-20 w-48 h-48 opacity-15">
+    <svg viewBox="0 0 100 100" class="w-full h-full text-brand-teal" aria-hidden="true">
+      <path d="M20,50 Q50,20 80,50 Q50,80 20,50" fill="currentColor" fill-opacity="0.3"/>
+    </svg>
+  </div>
 
-    <div class="mt-10 flex flex-wrap gap-3">
-      {data.items.map((item) => (
-        <span class="rounded-full border-2 border-brand-primary/30 bg-brand-secondary px-5 py-2.5 text-sm font-bold text-brand-text shadow-card hover:border-brand-primary hover:bg-brand-primary transition-colors cursor-default">
-          {item}
-        </span>
+  <Container class="relative z-10">
+    <!-- Section header -->
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <span class="inline-block mb-4 px-4 py-2 rounded-full bg-brand-blush/50 text-brand-blush-deep text-xs font-bold tracking-wider uppercase">
+        Para quién
+      </span>
+      <h2 class="text-4xl md:text-5xl font-bold text-brand-text mb-4">{data.title}</h2>
+      <p class="text-lg text-brand-text-soft">{data.intro}</p>
+    </div>
+
+    <!-- Client types - visual grid with icons -->
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+      {data.items.map((item, index) => (
+        <div class="group bg-white rounded-3xl p-8 shadow-soft hover:shadow-warm transition-all duration-300 border border-brand-blush/30 text-center">
+          <!-- Icon -->
+          <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-brand-blush/30 flex items-center justify-center text-brand-blush-deep group-hover:scale-110 transition-transform">
+            <div class="w-8 h-8" set:html={clientIcons[index % 4]} />
+          </div>
+          
+          <!-- Label -->
+          <p class="text-lg font-bold text-brand-text">{item}</p>
+        </div>
       ))}
     </div>
   </Container>

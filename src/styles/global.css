@@ -1,22 +1,33 @@
 @import 'tailwindcss';
 
 @theme {
-  /* Primary Brand Colors */
+  /* Core Brand Colors */
   --color-brand-primary: #F7BC1E;
   --color-brand-secondary: #FDE8A4;
   --color-brand-background: #F9F7F2;
 
-  /* Accent Colors */
+  /* Extended Instagram-Inspired Palette */
   --color-brand-warm: #EEA45D;
   --color-brand-soft: #F5B7B1;
   --color-brand-muted: #73938B;
+
+  /* New accent colors from Instagram visual style */
+  --color-brand-teal: #5A8A8A;
+  --color-teal-light: #7BA3A3;
+  --color-teal-dark: #4A7575;
+  --color-brand-terracotta: #D4755F;
+  --color-terracotta-light: #E08B77;
+  --color-brand-olive: #8B9A6D;
+  --color-olive-light: #A3B085;
+  --color-brand-blush: #E8C4C4;
+  --color-blush-deep: #D9A8A8;
 
   /* Text Colors */
   --color-brand-text: #2C2416;
   --color-brand-text-soft: #5C4D3C;
   --color-brand-text-muted: #8B7355;
 
-  /* Legacy aliases for backwards compatibility during transition */
+  /* Legacy aliases for backwards compatibility */
   --color-brand-cream: #F9F7F2;
   --color-brand-paper: #FDE8A4;
   --color-brand-paper-deep: #FDE8A4;
@@ -39,6 +50,8 @@
   --shadow-warm: 0 8px 30px rgba(238, 164, 93, 0.18);
   --shadow-panel: 0 12px 40px rgba(247, 188, 30, 0.15);
   --shadow-card: 0 2px 12px rgba(44, 36, 22, 0.06);
+  --shadow-teal: 0 8px 30px rgba(90, 138, 138, 0.2);
+  --shadow-terracotta: 0 8px 30px rgba(212, 117, 95, 0.2);
 }
 
 html {
@@ -78,7 +91,11 @@ details[open] .faq-icon {
   text-wrap: pretty;
 }
 
-/* Surface Card Styles */
+/* ========================================
+   SURFACE CARD STYLES - Multi-colored
+   ======================================== */
+
+/* Default - warm yellow/cream */
 .surface-card {
   border: 1px solid rgba(247, 188, 30, 0.25);
   background: linear-gradient(180deg, rgba(253, 232, 164, 0.95), rgba(249, 247, 242, 0.98));
@@ -100,6 +117,66 @@ details[open] .faq-icon {
   border-radius: 1.25rem;
 }
 
+/* Teal/Turquoise surfaces - from Instagram */
+.surface-teal {
+  border: 1px solid rgba(90, 138, 138, 0.3);
+  background: linear-gradient(160deg, #7BA3A3 0%, #5A8A8A 100%);
+  box-shadow: var(--shadow-teal);
+  border-radius: 1.5rem;
+}
+
+.surface-teal-light {
+  border: 1px solid rgba(90, 138, 138, 0.25);
+  background: linear-gradient(180deg, rgba(123, 163, 163, 0.2), rgba(90, 138, 138, 0.1));
+  box-shadow: var(--shadow-card);
+  border-radius: 1rem;
+}
+
+/* Terracotta/Coral surfaces - warm accent */
+.surface-terracotta {
+  border: 1px solid rgba(212, 117, 95, 0.3);
+  background: linear-gradient(160deg, #E08B77 0%, #D4755F 100%);
+  box-shadow: var(--shadow-terracotta);
+  border-radius: 1.5rem;
+}
+
+.surface-terracotta-light {
+  border: 1px solid rgba(212, 117, 95, 0.2);
+  background: linear-gradient(180deg, rgba(224, 139, 119, 0.2), rgba(249, 247, 242, 0.95));
+  box-shadow: var(--shadow-card);
+  border-radius: 1rem;
+}
+
+/* Olive/Sage surfaces - natural tone */
+.surface-olive {
+  border: 1px solid rgba(139, 154, 109, 0.3);
+  background: linear-gradient(160deg, #A3B085 0%, #8B9A6D 100%);
+  box-shadow: 0 16px 50px rgba(139, 154, 109, 0.25);
+  border-radius: 1.5rem;
+}
+
+.surface-olive-light {
+  border: 1px solid rgba(139, 154, 109, 0.2);
+  background: linear-gradient(180deg, rgba(163, 176, 133, 0.2), rgba(249, 247, 242, 0.95));
+  box-shadow: var(--shadow-card);
+  border-radius: 1rem;
+}
+
+/* Blush/Pink surfaces - soft accent */
+.surface-blush {
+  border: 1px solid rgba(232, 196, 196, 0.4);
+  background: linear-gradient(160deg, #E8C4C4 0%, #D9A8A8 100%);
+  box-shadow: 0 16px 50px rgba(232, 196, 196, 0.25);
+  border-radius: 1.5rem;
+}
+
+.surface-blush-light {
+  border: 1px solid rgba(232, 196, 196, 0.3);
+  background: linear-gradient(180deg, rgba(232, 196, 196, 0.3), rgba(249, 247, 242, 0.95));
+  box-shadow: var(--shadow-card);
+  border-radius: 1rem;
+}
+
 /* Primary Action Panel - Yellow dominant */
 .surface-primary-panel {
   border: 2px solid rgba(247, 188, 30, 0.5);
@@ -108,7 +185,7 @@ details[open] .faq-icon {
   border-radius: 1.5rem;
 }
 
-/* Muted/Secondary Panel - Verde Eucalipto */
+/* Muted panel - Eucalipto */
 .surface-muted-panel {
   border: 1px solid rgba(115, 147, 139, 0.3);
   background: linear-gradient(160deg, #73938B 0%, #5a7a72 100%);
@@ -116,12 +193,106 @@ details[open] .faq-icon {
   border-radius: 1.5rem;
 }
 
-/* Soft accent panel - Rosa Pastel */
+/* Soft accent panel - Rosa */
 .surface-soft-panel {
   border: 1px solid rgba(245, 183, 177, 0.4);
   background: linear-gradient(160deg, #F5B7B1 0%, #e8a29b 100%);
   box-shadow: 0 16px 50px rgba(245, 183, 177, 0.25);
   border-radius: 1.5rem;
+}
+
+/* ========================================
+   DECORATIVE ELEMENTS
+   ======================================== */
+
+/* Torn paper effect edges */
+.torn-edge {
+  position: relative;
+}
+
+.torn-edge::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  right: 0;
+  height: 20px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z' fill='%23F7BC1E' fill-opacity='0.15'/%3E%3C/svg%3E") repeat-x;
+  background-size: 1200px 100%;
+}
+
+/* Brush stroke decorative elements */
+.brush-stroke {
+  position: relative;
+  overflow: hidden;
+}
+
+.brush-stroke::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -20%;
+  width: 140%;
+  height: 200%;
+  background: linear-gradient(
+    135deg,
+    transparent 30%,
+    rgba(247, 188, 30, 0.1) 40%,
+    rgba(212, 117, 95, 0.08) 50%,
+    transparent 60%
+  );
+  transform: rotate(-5deg);
+  pointer-events: none;
+}
+
+/* Organic blob shapes */
+.blob {
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+}
+
+.blob-alt {
+  border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+}
+
+/* Colorful decorative blobs */
+.blob-yellow {
+  background: linear-gradient(135deg, rgba(247, 188, 30, 0.3), rgba(238, 164, 93, 0.2));
+  filter: blur(40px);
+}
+
+.blob-teal {
+  background: linear-gradient(135deg, rgba(90, 138, 138, 0.3), rgba(123, 163, 163, 0.2));
+  filter: blur(40px);
+}
+
+.blob-terracotta {
+  background: linear-gradient(135deg, rgba(212, 117, 95, 0.25), rgba(224, 139, 119, 0.15));
+  filter: blur(40px);
+}
+
+.blob-blush {
+  background: linear-gradient(135deg, rgba(232, 196, 196, 0.4), rgba(217, 168, 168, 0.2));
+  filter: blur(40px);
+}
+
+.blob-olive {
+  background: linear-gradient(135deg, rgba(139, 154, 109, 0.3), rgba(163, 176, 133, 0.2));
+  filter: blur(40px);
+}
+
+/* Paper texture overlay */
+.paper-texture {
+  position: relative;
+}
+
+.paper-texture::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+  border-radius: inherit;
 }
 
 /* FAQ Icon Animation */
@@ -162,4 +333,121 @@ details[open] .faq-icon {
 /* Button base reset */
 button {
   font-family: var(--font-body);
+}
+
+/* Section alternating backgrounds */
+.section-warm {
+  background: linear-gradient(180deg, var(--color-brand-background) 0%, rgba(253, 232, 164, 0.3) 50%, var(--color-brand-background) 100%);
+}
+
+.section-teal {
+  background: linear-gradient(180deg, var(--color-brand-background) 0%, rgba(123, 163, 163, 0.15) 50%, var(--color-brand-background) 100%);
+}
+
+.section-blush {
+  background: linear-gradient(180deg, var(--color-brand-background) 0%, rgba(232, 196, 196, 0.2) 50%, var(--color-brand-background) 100%);
+}
+
+.section-olive {
+  background: linear-gradient(180deg, var(--color-brand-background) 0%, rgba(163, 176, 133, 0.15) 50%, var(--color-brand-background) 100%);
+}
+
+/* ========================================
+   CALMING ANIMATIONS
+   ======================================== */
+
+/* Slow pulse for background blobs */
+@keyframes pulse-slow {
+  0%, 100% { 
+    transform: scale(1); 
+    opacity: 1; 
+  }
+  50% { 
+    transform: scale(1.05); 
+    opacity: 0.85; 
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 8s ease-in-out infinite;
+}
+
+/* Gentle floating animation */
+@keyframes float {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg); 
+  }
+  50% { 
+    transform: translateY(-20px) rotate(3deg); 
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Very slow float for background elements */
+@keyframes float-slow {
+  0%, 100% { 
+    transform: translate(0, 0) scale(1); 
+  }
+  33% { 
+    transform: translate(30px, -30px) scale(1.02); 
+  }
+  66% { 
+    transform: translate(-20px, 20px) scale(0.98); 
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 15s ease-in-out infinite;
+}
+
+/* Gentle sway for botanical elements */
+@keyframes sway {
+  0%, 100% { 
+    transform: rotate(-3deg); 
+  }
+  50% { 
+    transform: rotate(3deg); 
+  }
+}
+
+.animate-sway {
+  animation: sway 4s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+/* Soft breathing effect */
+@keyframes breathe {
+  0%, 100% { 
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% { 
+    transform: scale(1.02);
+    opacity: 1;
+  }
+}
+
+.animate-breathe {
+  animation: breathe 5s ease-in-out infinite;
+}
+
+/* Smooth scroll behavior */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Respect user preferences for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-pulse-slow,
+  .animate-float,
+  .animate-float-slow,
+  .animate-sway,
+  .animate-breathe {
+    animation: none;
+  }
 }

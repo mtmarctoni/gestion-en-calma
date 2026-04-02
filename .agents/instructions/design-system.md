@@ -2,17 +2,25 @@
 
 ## CSS Custom Properties (src/styles/global.css)
 
-### Color Tokens
+### Core Color Tokens
 ```css
 /* Primary Palette */
---color-brand-primary: #F7BC1E;     /* Amarillo Girasol - CTAs, accents */
+--color-brand-primary: #F7BC1E;     /* Amarillo Girasol - CTAs, primary accents */
 --color-brand-secondary: #FDE8A4;   /* Crema Suave - cards, surfaces */
 --color-brand-background: #F9F7F2;  /* Blanco Hueso - page background */
 
-/* Accent Palette */
+/* Extended Instagram Palette */
 --color-brand-warm: #EEA45D;        /* Naranja Melocotón - hover states */
 --color-brand-soft: #F5B7B1;      /* Rosa Pastel - soft highlights */
 --color-brand-muted: #73938B;       /* Verde Eucalipto - muted elements */
+--color-brand-teal: #5A8A8A;        /* Teal/Turquesa - cool accents */
+--color-teal-light: #7BA3A3;      /* Teal light variant */
+--color-brand-terracotta: #D4755F;  /* Terracotta - bold energy accents */
+--color-terracotta-light: #E08B77;/* Terracotta light variant */
+--color-brand-olive: #8B9A6D;       /* Verde Oliva - natural tones */
+--color-olive-light: #A3B085;     /* Olive light variant */
+--color-brand-blush: #E8C4C4;       /* Blush/Rosa Pálido - soft panels */
+--color-blush-deep: #D9A8A8;        /* Blush deep variant */
 
 /* Text Colors */
 --color-brand-text: #2C2416;        /* Dark warm brown - primary text */
@@ -27,9 +35,12 @@
 
 ### Shadow Tokens
 ```css
---shadow-soft: 0 4px 20px rgba(247, 188, 30, 0.15);
---shadow-warm: 0 8px 30px rgba(238, 164, 93, 0.2);
---shadow-card: 0 2px 12px rgba(44, 36, 22, 0.08);
+--shadow-soft: 0 4px 20px rgba(247, 188, 30, 0.12);
+--shadow-warm: 0 8px 30px rgba(238, 164, 93, 0.18);
+--shadow-panel: 0 12px 40px rgba(247, 188, 30, 0.15);
+--shadow-card: 0 2px 12px rgba(44, 36, 22, 0.06);
+--shadow-teal: 0 8px 30px rgba(90, 138, 138, 0.2);
+--shadow-terracotta: 0 8px 30px rgba(212, 117, 95, 0.2);
 ```
 
 ## Tailwind Classes Available
@@ -41,48 +52,109 @@
 - `bg-brand-warm` - Naranja Melocotón
 - `bg-brand-soft` - Rosa Pastel
 - `bg-brand-muted` - Verde Eucalipto
+- `bg-brand-teal` - Teal
+- `bg-teal-light` - Teal light
+- `bg-brand-terracotta` - Terracotta
+- `bg-terracotta-light` - Terracotta light
+- `bg-brand-olive` - Olive
+- `bg-olive-light` - Olive light
+- `bg-brand-blush` - Blush
+- `bg-blush-deep` - Blush deep
 
 ### Text Colors
-- `text-brand-text` - Primary text color
-- `text-brand-text-soft` - Secondary/muted text
-- `text-brand-text-muted` - Captions and metadata
-- `text-brand-primary` - Amarillo Girasol text
-- `text-brand-warm` - Naranja Melocotón text
+- `text-brand-text` - Primary text
+- `text-brand-text-soft` - Secondary text
+- `text-brand-text-muted` - Captions
 
 ### Border Colors
-- `border-brand-primary` - Amarillo Girasol border
-- `border-brand-warm` - Naranja Melocotón border
-- `border-brand-muted` - Verde Eucalipto border
-- `border-brand-text/10` - Subtle text-colored border
+- `border-brand-primary` - Amarillo
+- `border-brand-terracotta` - Terracotta
+- `border-brand-teal` - Teal
+- `border-brand-blush` - Blush
+- `border-brand-olive` - Olive
+
+## Surface Classes (Multi-Color System)
+
+### Warm/Cream Surfaces
+- `surface-card` - Default warm cream
+- `surface-card-soft` - Softer cream
+- `surface-card-deep` - Deeper cream
+- `surface-primary-panel` - Yellow action panels (CTAs)
+
+### Cool Surfaces (Teal)
+- `surface-teal` - Full teal panel with white text
+- `surface-teal-light` - Light teal tint
+
+### Warm Surfaces (Terracotta)
+- `surface-terracotta` - Full terracotta panel with white text
+- `surface-terracotta-light` - Light terracotta tint
+
+### Natural Surfaces (Olive)
+- `surface-olive` - Full olive panel with white text
+- `surface-olive-light` - Light olive tint
+
+### Soft Surfaces (Blush)
+- `surface-blush` - Full blush panel
+- `surface-blush-light` - Light blush tint
+
+## Section Background Alternatives
+
+Use these to alternate section colors:
+- `section-warm` - Yellow tinted background
+- `section-teal` - Teal tinted background
+- `section-blush` - Pink tinted background
+- `section-olive` - Olive tinted background
+
+## Decorative Elements
+
+### Blob Shapes
+- `blob` - Organic shape base
+- `blob-alt` - Alternative blob shape
+- `blob-yellow` - Amarillo Girasol blob
+- `blob-teal` - Teal blob
+- `blob-terracotta` - Terracotta blob
+- `blob-blush` - Blush blob
+- `blob-olive` - Olive blob
+
+### Textures & Effects
+- `paper-texture` - Subtle paper grain overlay
+- `torn-edge` - Torn paper bottom edge
+- `brush-stroke` - Brush stroke decorative overlay
 
 ## Component Patterns
 
 ### Primary Button
 ```astro
-<button class="inline-flex items-center justify-center rounded-lg px-6 py-3.5 bg-brand-primary text-brand-text font-semibold shadow-soft hover:bg-brand-warm transition-colors">
+<button class="inline-flex items-center justify-center rounded-xl px-6 py-3.5 bg-brand-primary text-brand-text font-bold shadow-warm hover:bg-brand-warm transition-colors">
   Button Text
 </button>
 ```
 
 ### Secondary Button
 ```astro
-<button class="inline-flex items-center justify-center rounded-lg px-6 py-3.5 border-2 border-brand-primary text-brand-text font-semibold hover:bg-brand-secondary transition-colors">
+<button class="inline-flex items-center justify-center rounded-xl px-6 py-3.5 border-2 border-brand-primary bg-brand-secondary/50 text-brand-text font-bold hover:bg-brand-primary transition-colors">
   Button Text
 </button>
 ```
 
-### Card Surface
+### Multi-Color Card Grid Pattern
 ```astro
-<div class="bg-brand-secondary border border-brand-warm/20 rounded-xl p-6 shadow-card">
-  Card content
-</div>
+<!-- Alternate colors for visual variety -->
+const surfaceColors = ['surface-card', 'surface-teal-light', 'surface-olive-light'];
+
+{items.map((item, index) => (
+  <article class={`${surfaceColors[index % 3]} p-6`}>
+    Content
+  </article>
+))}
 ```
 
-### Section Background
+### Colored Panel with White Text
 ```astro
-<section class="bg-brand-background">
-  Section content
-</section>
+<!-- For teal, terracotta, olive full panels -->
+<div class="surface-teal p-8">
+  <p class="text-white">Content on colored background</p>
+</div>
 ```
 
 ## Font Usage
@@ -104,19 +176,19 @@ font-weight: 400; /* Regular body text */
 font-weight: 700; /* Bold headings and emphasis */
 ```
 
-## Spacing Scale
-Use Tailwind's default spacing scale, but prefer these for consistency:
+## Spacing & Layout
+Use Tailwind's default spacing scale:
 - `gap-4` (16px) - Between related elements
 - `gap-6` (24px) - Between section items
 - `gap-8` (32px) - Between major sections
 - `p-6` (24px) - Card padding
-- `p-8` (32px) - Section padding
 - `py-16` (64px) - Section vertical spacing
 
 ## Border Radius
-- `rounded-lg` (8px) - Buttons, inputs, small cards
+- `rounded-lg` (8px) - Buttons, inputs
 - `rounded-xl` (12px) - Cards, panels
-- `rounded-2xl` (16px) - Feature cards, hero elements
+- `rounded-2xl` (16px) - Feature cards
+- `rounded-full` - Pills, tags, avatars
 
 ## Responsive Breakpoints
 - Mobile: default (<640px)
@@ -124,8 +196,10 @@ Use Tailwind's default spacing scale, but prefer these for consistency:
 - Desktop: `lg:` (1024px+)
 - Wide: `xl:` (1280px+)
 
-## Icon Guidelines
-- Keep icons simple and minimal
-- Use warm colors (brand-primary, brand-warm) for active states
-- Use text-muted for inactive/disabled states
-- Icon size: 20px (w-5 h-5) for inline, 24px (w-6 h-6) for buttons
+## Color Strategy Guidelines
+
+1. **Alternate sections** - Don't use same color for all sections
+2. **Mix warm and cool** - Yellow/teal/terracotta/blush/olive together
+3. **CTAs stay yellow** - Primary actions always use Amarillo Girasol
+4. **Full color panels** - Use teal/terracotta/olive for impact areas
+5. **Light tints** - Use -light variants for subtle backgrounds

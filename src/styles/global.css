@@ -1,37 +1,56 @@
 @import 'tailwindcss';
 
 @theme {
-  --color-brand-cream: #f4ecdf;
-  --color-brand-paper: #fcf7ef;
-  --color-brand-paper-deep: #e9ddca;
-  --color-brand-sage: #a0af90;
-  --color-brand-sage-soft: #d7decb;
-  --color-brand-olive: #697854;
-  --color-brand-olive-deep: #4d5d41;
-  --color-brand-ink: #2f2a24;
-  --color-brand-ink-soft: #665f52;
-  --color-brand-ochre: #b8894d;
-  --color-brand-coffee: #775845;
+  /* Primary Brand Colors */
+  --color-brand-primary: #F7BC1E;
+  --color-brand-secondary: #FDE8A4;
+  --color-brand-background: #F9F7F2;
 
-  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
-  --font-display: 'Fraunces Variable', Georgia, serif;
+  /* Accent Colors */
+  --color-brand-warm: #EEA45D;
+  --color-brand-soft: #F5B7B1;
+  --color-brand-muted: #73938B;
 
-  --shadow-soft: 0 22px 55px rgba(74, 56, 37, 0.08);
-  --shadow-panel: 0 28px 75px rgba(74, 56, 37, 0.14);
+  /* Text Colors */
+  --color-brand-text: #2C2416;
+  --color-brand-text-soft: #5C4D3C;
+  --color-brand-text-muted: #8B7355;
+
+  /* Legacy aliases for backwards compatibility during transition */
+  --color-brand-cream: #F9F7F2;
+  --color-brand-paper: #FDE8A4;
+  --color-brand-paper-deep: #FDE8A4;
+  --color-brand-sage: #F5B7B1;
+  --color-brand-sage-soft: #FDE8A4;
+  --color-brand-olive: #F7BC1E;
+  --color-brand-olive-deep: #EEA45D;
+  --color-brand-ink: #2C2416;
+  --color-brand-ink-soft: #5C4D3C;
+  --color-brand-ochre: #F7BC1E;
+  --color-brand-coffee: #73938B;
+
+  /* Typography */
+  --font-body: 'Courier Prime', 'Courier New', Courier, monospace;
+  --font-sans: 'Courier Prime', 'Courier New', Courier, monospace;
+  --font-display: 'Courier Prime', 'Courier New', Courier, monospace;
+
+  /* Shadows - warm tinted */
+  --shadow-soft: 0 4px 20px rgba(247, 188, 30, 0.12);
+  --shadow-warm: 0 8px 30px rgba(238, 164, 93, 0.18);
+  --shadow-panel: 0 12px 40px rgba(247, 188, 30, 0.15);
+  --shadow-card: 0 2px 12px rgba(44, 36, 22, 0.06);
 }
 
 html {
   scroll-behavior: smooth;
-  background: var(--color-brand-cream);
+  background: var(--color-brand-background);
 }
 
 body {
   min-height: 100vh;
-  font-family: var(--font-sans);
-  background:
-    radial-gradient(circle at top left, rgba(160, 175, 144, 0.24), transparent 28%),
-    radial-gradient(circle at 84% 10%, rgba(184, 137, 77, 0.18), transparent 24%),
-    linear-gradient(180deg, #f5eee2 0%, #eee3d4 52%, #f4eee4 100%);
+  font-family: var(--font-body);
+  background: var(--color-brand-background);
+  color: var(--color-brand-text);
 }
 
 a {
@@ -39,8 +58,8 @@ a {
 }
 
 ::selection {
-  background: rgba(184, 137, 77, 0.32);
-  color: var(--color-brand-ink);
+  background: rgba(247, 188, 30, 0.35);
+  color: var(--color-brand-text);
 }
 
 summary::-webkit-details-marker {
@@ -59,43 +78,88 @@ details[open] .faq-icon {
   text-wrap: pretty;
 }
 
+/* Surface Card Styles */
 .surface-card {
-  border: 1px solid rgba(105, 120, 84, 0.12);
-  background: linear-gradient(180deg, rgba(255, 253, 248, 0.92), rgba(248, 241, 230, 0.98));
-  box-shadow: var(--shadow-soft);
-  backdrop-filter: blur(10px);
+  border: 1px solid rgba(247, 188, 30, 0.25);
+  background: linear-gradient(180deg, rgba(253, 232, 164, 0.95), rgba(249, 247, 242, 0.98));
+  box-shadow: var(--shadow-card);
+  border-radius: 1rem;
 }
 
 .surface-card-soft {
-  border: 1px solid rgba(105, 120, 84, 0.12);
-  background: linear-gradient(180deg, rgba(243, 232, 217, 0.9), rgba(252, 247, 239, 0.95));
+  border: 1px solid rgba(247, 188, 30, 0.2);
+  background: linear-gradient(180deg, rgba(249, 247, 242, 0.95), rgba(253, 232, 164, 0.9));
   box-shadow: var(--shadow-soft);
-  backdrop-filter: blur(10px);
+  border-radius: 1rem;
 }
 
 .surface-card-deep {
-  border: 1px solid rgba(105, 120, 84, 0.14);
-  background: linear-gradient(160deg, rgba(255, 251, 245, 0.88), rgba(233, 221, 202, 0.96));
+  border: 1px solid rgba(247, 188, 30, 0.3);
+  background: linear-gradient(160deg, rgba(253, 232, 164, 0.92), rgba(249, 247, 242, 0.96));
   box-shadow: var(--shadow-panel);
-  backdrop-filter: blur(12px);
+  border-radius: 1.25rem;
 }
 
-.surface-olive-panel {
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background:
-    radial-gradient(circle at top right, rgba(184, 137, 77, 0.18), transparent 30%),
-    linear-gradient(155deg, #697854 0%, #4d5d41 100%);
-  box-shadow: 0 32px 85px rgba(74, 56, 37, 0.24);
+/* Primary Action Panel - Yellow dominant */
+.surface-primary-panel {
+  border: 2px solid rgba(247, 188, 30, 0.5);
+  background: linear-gradient(155deg, #F7BC1E 0%, #EEA45D 100%);
+  box-shadow: 0 16px 50px rgba(247, 188, 30, 0.35);
+  border-radius: 1.5rem;
 }
 
-.surface-coffee-panel {
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background:
-    radial-gradient(circle at top right, rgba(184, 137, 77, 0.16), transparent 28%),
-    linear-gradient(160deg, #7d5d47 0%, #624938 100%);
-  box-shadow: 0 32px 85px rgba(74, 56, 37, 0.24);
+/* Muted/Secondary Panel - Verde Eucalipto */
+.surface-muted-panel {
+  border: 1px solid rgba(115, 147, 139, 0.3);
+  background: linear-gradient(160deg, #73938B 0%, #5a7a72 100%);
+  box-shadow: 0 16px 50px rgba(115, 147, 139, 0.25);
+  border-radius: 1.5rem;
 }
 
+/* Soft accent panel - Rosa Pastel */
+.surface-soft-panel {
+  border: 1px solid rgba(245, 183, 177, 0.4);
+  background: linear-gradient(160deg, #F5B7B1 0%, #e8a29b 100%);
+  box-shadow: 0 16px 50px rgba(245, 183, 177, 0.25);
+  border-radius: 1.5rem;
+}
+
+/* FAQ Icon Animation */
 .faq-icon {
   transition: transform 180ms ease;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-brand-background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-brand-secondary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-brand-primary);
+}
+
+/* Typography utilities */
+.font-typewriter {
+  font-family: var(--font-body);
+}
+
+/* Focus styles */
+*:focus-visible {
+  outline: 2px solid var(--color-brand-primary);
+  outline-offset: 2px;
+}
+
+/* Button base reset */
+button {
+  font-family: var(--font-body);
 }

@@ -25,10 +25,11 @@ const hasPublishedTestimonials = items.some((item) => !item.isPlaceholder);
 
     <div class="mt-10 grid gap-5 lg:grid-cols-2">
       {items.map((item) => (
-        <article class="rounded-[1.75rem] border border-brand-olive/10 bg-brand-paper p-6 shadow-[0_20px_50px_rgba(74,86,57,0.04)]">
-          <p class="text-lg leading-8 text-brand-ink-soft">“{item.quote}”</p>
-          <p class="mt-6 font-semibold text-brand-ink">{item.name}</p>
-          {item.role && <p class="mt-1 text-sm text-brand-ink-soft">{item.role}</p>}
+        <article class="surface-card-soft p-6 relative">
+          <div class="absolute right-4 top-4 text-6xl font-bold text-brand-primary/20">"</div>
+          <p class="text-lg leading-8 text-brand-text-soft relative z-10">{item.quote}</p>
+          <p class="mt-6 font-bold text-brand-text">{item.name}</p>
+          {item.role && <p class="mt-1 text-sm text-brand-text-muted">{item.role}</p>}
         </article>
       ))}
     </div>

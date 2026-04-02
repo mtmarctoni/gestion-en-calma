@@ -25,11 +25,11 @@ const metadata = buildMetadata({
       <SectionHeading eyebrow={page.eyebrow} title={page.title} intro={page.intro} />
 
       <div class="mt-10 grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-        <div class="rounded-[2rem] border border-brand-olive/10 bg-brand-paper p-8 shadow-[0_20px_50px_rgba(74,86,57,0.04)]">
-          <h2 class="font-display text-3xl text-brand-ink">Otras formas de contacto</h2>
-          <div class="mt-6 space-y-6 text-base leading-7 text-brand-ink-soft">
+        <div class="surface-card-soft p-8">
+          <h2 class="text-2xl font-bold text-brand-text md:text-3xl">Otras formas de contacto</h2>
+          <div class="mt-6 space-y-6 text-base leading-7 text-brand-text-soft">
             <div>
-              <p class="font-semibold text-brand-ink">WhatsApp</p>
+              <p class="font-bold text-brand-text">WhatsApp</p>
               <p class="mt-1">Si prefieres escribir directamente, puedes hacerlo por WhatsApp.</p>
               <div class="mt-4">
                 <Button href={site.whatsappUrl} variant="secondary" target="_blank" rel="noreferrer">Abrir WhatsApp</Button>
@@ -37,12 +37,12 @@ const metadata = buildMetadata({
             </div>
 
             <div>
-              <p class="font-semibold text-brand-ink">Email</p>
-              <p class="mt-1"><a class="hover:text-brand-ink" href={`mailto:${site.email}`}>{site.email}</a></p>
+              <p class="font-bold text-brand-text">Email</p>
+              <p class="mt-1"><a class="font-semibold hover:text-brand-warm" href={`mailto:${site.email}`}>{site.email}</a></p>
             </div>
 
             <div>
-              <p class="font-semibold text-brand-ink">Llamada</p>
+              <p class="font-bold text-brand-text">Llamada</p>
               <p class="mt-1">Si más adelante Yolanda activa una agenda externa, este será también el lugar para reservar llamada.</p>
             </div>
           </div>
@@ -50,7 +50,7 @@ const metadata = buildMetadata({
 
         <div class="space-y-4">
           {errorMessage && (
-            <div class="rounded-[1.5rem] border border-red-200 bg-red-50 px-5 py-4 text-sm text-red-700">
+            <div class="rounded-xl border-2 border-red-200 bg-red-50 px-5 py-4 text-sm text-red-700">
               {errorMessage}
             </div>
           )}

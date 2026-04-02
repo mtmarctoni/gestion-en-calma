@@ -22,11 +22,11 @@ const metadata = buildMetadata({
 <BaseLayout site={site} metadata={metadata}>
   <section class="py-16 md:py-20">
     <Container class="max-w-3xl">
-      <h1 class="font-display text-5xl text-brand-ink">Aviso legal</h1>
-      <div class="mt-8 space-y-6 text-base leading-8 text-brand-ink-soft">
+      <h1 class="text-4xl font-bold text-brand-text md:text-5xl">Aviso legal</h1>
+      <div class="mt-8 space-y-6 text-base leading-8 text-brand-text-soft">
         <p>Este texto es un punto de partida y debe revisarse con los datos finales de Yolanda antes de publicar el sitio.</p>
         <p>Responsable del sitio: Yolanda, Gestión en Calma.</p>
-        <p>Contacto provisional: {site.email}</p>
+        <p>Contacto provisional: <a href={`mailto:${site.email}`} class="font-bold text-brand-warm hover:text-brand-text">{site.email}</a></p>
         <p>Actividad: servicios de apoyo administrativo y digital para autónomos y pequeños negocios.</p>
       </div>
     </Container>

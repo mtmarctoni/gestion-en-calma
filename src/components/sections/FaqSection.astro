@@ -16,9 +16,12 @@ const { items } = Astro.props;
 
     <div class="mt-10 space-y-4">
       {items.map((item) => (
-        <details class="rounded-[1.5rem] border border-brand-olive/10 bg-brand-paper px-6 py-5 shadow-[0_16px_36px_rgba(74,86,57,0.04)]">
-          <summary class="cursor-pointer list-none font-semibold text-brand-ink">{item.question}</summary>
-          <p class="mt-4 max-w-3xl text-base leading-7 text-brand-ink-soft">{item.answer}</p>
+        <details class="surface-card px-6 py-5 cursor-pointer transition-all hover:shadow-warm">
+          <summary class="list-none font-bold text-brand-text flex items-center justify-between">
+            {item.question}
+            <span class="faq-icon text-brand-primary text-xl font-bold">+</span>
+          </summary>
+          <p class="mt-4 max-w-3xl text-base leading-7 text-brand-text-soft">{item.answer}</p>
         </details>
       ))}
     </div>

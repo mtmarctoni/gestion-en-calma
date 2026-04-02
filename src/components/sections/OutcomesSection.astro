@@ -10,13 +10,14 @@ interface Props {
 const { data } = Astro.props;
 ---
 
-<section class="bg-brand-paper py-14 md:py-20">
+<section class="bg-brand-secondary/30 py-14 md:py-20">
   <Container>
     <SectionHeading title={data.title} />
 
     <div class="mt-10 grid gap-4 md:grid-cols-2">
       {data.items.map((item) => (
-        <div class="rounded-[1.5rem] border border-brand-olive/10 bg-brand-cream px-6 py-5 text-brand-ink-soft shadow-[0_18px_40px_rgba(74,86,57,0.04)]">
+        <div class="surface-card px-6 py-5 text-brand-text-soft font-semibold">
+          <span class="mr-3 inline-flex h-6 w-6 items-center justify-center rounded-full bg-brand-primary text-xs text-brand-text">✓</span>
           {item}
         </div>
       ))}

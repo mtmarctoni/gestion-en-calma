@@ -12,13 +12,17 @@ const { data } = Astro.props;
 
 <section class="pb-18 pt-8 md:pb-24">
   <Container>
-    <div class="rounded-[2.25rem] border border-brand-olive/10 bg-brand-olive px-8 py-10 text-brand-cream shadow-[0_26px_70px_rgba(74,86,57,0.22)] md:px-12 md:py-14">
-      <h2 class="max-w-3xl font-display text-balance text-4xl leading-tight md:text-5xl">{data.title}</h2>
-      <p class="mt-5 max-w-2xl text-base leading-8 text-brand-cream/85 md:text-lg">{data.body}</p>
+    <div class="surface-primary-panel px-8 py-10 md:px-12 md:py-14 relative overflow-hidden">
+      <!-- Decorative elements -->
+      <div class="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-brand-warm/20 blur-2xl"></div>
+      <div class="absolute -bottom-10 -left-10 h-40 w-40 rounded-full bg-brand-soft/20 blur-2xl"></div>
 
-      <div class="mt-8 flex flex-wrap gap-4">
-        <Button href={data.primaryCta.href} class="bg-brand-cream text-brand-olive hover:bg-brand-paper">{data.primaryCta.label}</Button>
-        <Button href={data.secondaryCta.href} variant="secondary" class="border-brand-cream/40 bg-transparent text-brand-cream hover:bg-white/8" target="_blank" rel="noreferrer">{data.secondaryCta.label}</Button>
+      <h2 class="relative z-10 max-w-3xl text-balance text-3xl font-bold leading-tight text-brand-text md:text-4xl">{data.title}</h2>
+      <p class="relative z-10 mt-5 max-w-2xl text-base leading-8 text-brand-text/80 md:text-lg">{data.body}</p>
+
+      <div class="relative z-10 mt-8 flex flex-wrap gap-4">
+        <Button href={data.primaryCta.href}>{data.primaryCta.label}</Button>
+        <Button href={data.secondaryCta.href} variant="secondary" target="_blank" rel="noreferrer">{data.secondaryCta.label}</Button>
       </div>
     </div>
   </Container>

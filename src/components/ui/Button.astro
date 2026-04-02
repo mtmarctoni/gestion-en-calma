@@ -18,14 +18,14 @@ const {
 } = Astro.props;
 
 const baseClass =
-  'inline-flex items-center justify-center rounded-full px-5 py-3.5 text-sm font-semibold tracking-[0.01em] transition duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-cream';
+  'inline-flex items-center justify-center rounded-xl px-6 py-3.5 text-sm font-bold tracking-wide transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-background focus-visible:ring-brand-primary';
 
 const variantClass = {
   primary:
-    'bg-brand-olive-deep text-brand-paper shadow-[0_14px_28px_rgba(77,93,65,0.18)] hover:bg-brand-coffee focus-visible:ring-brand-olive',
+    'bg-brand-primary text-brand-text shadow-warm hover:bg-brand-warm hover:shadow-soft',
   secondary:
-    'border border-brand-olive/15 bg-brand-paper/80 text-brand-ink shadow-[0_10px_24px_rgba(74,56,37,0.08)] hover:border-brand-ochre/35 hover:bg-brand-paper focus-visible:ring-brand-ochre',
-  ghost: 'text-brand-coffee hover:bg-brand-paper/70 hover:text-brand-ink focus-visible:ring-brand-ochre',
+    'border-2 border-brand-primary bg-brand-secondary/50 text-brand-text hover:bg-brand-primary hover:text-brand-text shadow-card',
+  ghost: 'text-brand-text-soft hover:text-brand-text hover:bg-brand-secondary/30',
 }[variant];
 
 const classes = `${baseClass} ${variantClass} ${className}`.trim();

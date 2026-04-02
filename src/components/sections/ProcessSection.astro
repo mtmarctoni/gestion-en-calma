@@ -16,10 +16,11 @@ const { data } = Astro.props;
 
     <div class="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
       {data.steps.map((step, index) => (
-        <article class="rounded-[1.75rem] border border-brand-olive/10 bg-brand-paper p-6 shadow-[0_20px_50px_rgba(74,86,57,0.04)]">
-          <p class="text-sm font-semibold uppercase tracking-[0.2em] text-brand-olive-deep/70">Paso {index + 1}</p>
-          <h3 class="mt-4 font-display text-2xl text-brand-ink">{step.title}</h3>
-          <p class="mt-4 text-base leading-7 text-brand-ink-soft">{step.description}</p>
+        <article class="surface-card p-6 relative overflow-hidden">
+          <div class="absolute -right-4 -top-4 h-20 w-20 rounded-full bg-brand-primary/10"></div>
+          <p class="text-xs font-bold uppercase tracking-[0.2em] text-brand-primary">Paso {index + 1}</p>
+          <h3 class="mt-4 text-xl font-bold text-brand-text">{step.title}</h3>
+          <p class="mt-4 text-base leading-7 text-brand-text-soft">{step.description}</p>
         </article>
       ))}
     </div>

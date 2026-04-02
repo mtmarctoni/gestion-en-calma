@@ -16,8 +16,13 @@ const { data } = Astro.props;
 
     <div class="mt-10 grid gap-5 md:grid-cols-3">
       {data.items.map((item) => (
-        <article class="rounded-[1.75rem] border border-brand-olive/10 bg-brand-paper p-6 shadow-[0_20px_50px_rgba(74,86,57,0.04)]">
-          <p class="text-base leading-7 text-brand-ink-soft">{item}</p>
+        <article class="surface-card p-6">
+          <div class="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-brand-soft/40">
+            <svg class="h-5 w-5 text-brand-text" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+          </div>
+          <p class="text-base leading-7 text-brand-text-soft">{item}</p>
         </article>
       ))}
     </div>

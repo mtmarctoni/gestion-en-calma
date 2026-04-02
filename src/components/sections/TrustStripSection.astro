@@ -10,11 +10,11 @@ const { items } = Astro.props;
 
 <section class="pb-10">
   <Container>
-    <ul class="grid gap-4 rounded-[2rem] border border-brand-olive/10 bg-brand-paper px-6 py-6 text-sm text-brand-ink-soft shadow-[0_20px_50px_rgba(74,86,57,0.04)] md:grid-cols-3 md:px-8">
+    <ul class="grid gap-4 rounded-2xl border border-brand-primary/20 bg-brand-secondary px-6 py-6 text-sm text-brand-text-soft shadow-card md:grid-cols-3 md:px-8">
       {items.map((item) => (
         <li class="flex items-center gap-3">
-          <span class="inline-flex h-2.5 w-2.5 rounded-full bg-brand-ochre"></span>
-          <span>{item}</span>
+          <span class="inline-flex h-2.5 w-2.5 rounded-full bg-brand-primary"></span>
+          <span class="font-semibold">{item}</span>
         </li>
       ))}
     </ul>

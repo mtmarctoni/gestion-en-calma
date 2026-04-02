@@ -1,6 +1,5 @@
 ---
-import '@fontsource-variable/inter';
-import '@fontsource-variable/fraunces';
+import '@fontsource/courier-prime';
 import '@/styles/global.css';
 import Footer from '@/components/navigation/Footer.astro';
 import Header from '@/components/navigation/Header.astro';
@@ -39,7 +38,7 @@ const pathname = Astro.url.pathname;
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
-  <body class="overflow-x-hidden bg-brand-cream text-brand-ink antialiased">
+  <body class="overflow-x-hidden bg-brand-background text-brand-text antialiased font-typewriter">
     <Header site={site} pathname={pathname} />
     <main class="overflow-hidden">
       <slot />

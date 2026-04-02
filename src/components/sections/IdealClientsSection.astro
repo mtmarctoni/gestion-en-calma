@@ -16,7 +16,7 @@ const { data } = Astro.props;
 
     <div class="mt-10 flex flex-wrap gap-3">
       {data.items.map((item) => (
-        <span class="rounded-full border border-brand-olive/15 bg-brand-paper px-4 py-2 text-sm text-brand-ink-soft">
+        <span class="rounded-full border-2 border-brand-primary/30 bg-brand-secondary px-5 py-2.5 text-sm font-bold text-brand-text shadow-card hover:border-brand-primary hover:bg-brand-primary transition-colors cursor-default">
           {item}
         </span>
       ))}

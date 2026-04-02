@@ -23,11 +23,12 @@ const metadata = buildMetadata({
 <BaseLayout site={site} metadata={metadata}>
   <section class="py-24">
     <Container>
-      <div class="mx-auto max-w-3xl rounded-[2rem] border border-brand-olive/10 bg-brand-paper p-10 text-center shadow-[0_20px_50px_rgba(74,86,57,0.04)]">
-        <p class="text-sm font-semibold uppercase tracking-[0.2em] text-brand-olive-deep/80">Mensaje enviado</p>
-        <h1 class="mt-4 font-display text-5xl text-brand-ink">Gracias por escribir</h1>
-        <p class="mt-6 text-base leading-8 text-brand-ink-soft">Tu mensaje ha salido bien. Yolanda podrá revisarlo y responderte por email lo antes posible.</p>
-        <div class="mt-8 flex flex-wrap justify-center gap-4">
+      <div class="surface-primary-panel mx-auto max-w-3xl p-10 text-center relative overflow-hidden">
+        <div class="absolute left-1/2 top-0 h-20 w-20 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-warm/30 blur-2xl"></div>
+        <p class="relative z-10 text-sm font-bold uppercase tracking-[0.2em] text-brand-text/70">Mensaje enviado</p>
+        <h1 class="relative z-10 mt-4 text-4xl font-bold text-brand-text md:text-5xl">Gracias por escribir</h1>
+        <p class="relative z-10 mt-6 text-base leading-8 text-brand-text/80">Tu mensaje ha salido bien. Yolanda podrá revisarlo y responderte por email lo antes posible.</p>
+        <div class="relative z-10 mt-8 flex flex-wrap justify-center gap-4">
           <Button href="/">Volver al inicio</Button>
           <Button href={site.whatsappUrl} variant="secondary" target="_blank" rel="noreferrer">Abrir WhatsApp</Button>
         </div>

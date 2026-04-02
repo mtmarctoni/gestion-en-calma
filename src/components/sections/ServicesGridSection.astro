@@ -19,22 +19,22 @@ const { eyebrow, title, intro, services } = Astro.props;
 
     <div class="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
       {services.map((service) => (
-        <article class="flex h-full flex-col rounded-[1.75rem] border border-brand-olive/10 bg-brand-paper p-6 shadow-[0_20px_50px_rgba(74,86,57,0.04)]">
-          <h3 class="font-display text-2xl text-brand-ink">{service.title}</h3>
-          <p class="mt-4 text-base leading-7 text-brand-ink-soft">{service.shortDescription}</p>
+        <article class="surface-card-soft flex h-full flex-col p-6 transition-all duration-200 hover:shadow-warm">
+          <h3 class="text-xl font-bold text-brand-text">{service.title}</h3>
+          <p class="mt-4 text-base leading-7 text-brand-text-soft">{service.shortDescription}</p>
 
-          <ul class="mt-5 space-y-2 text-sm text-brand-ink-soft">
+          <ul class="mt-5 space-y-2 text-sm text-brand-text-soft">
             {service.outcomes.slice(0, 3).map((outcome) => (
               <li class="flex gap-3">
-                <span class="mt-2 inline-flex h-2 w-2 rounded-full bg-brand-sage"></span>
+                <span class="mt-2 inline-flex h-2 w-2 rounded-full bg-brand-primary"></span>
                 <span>{outcome}</span>
               </li>
             ))}
           </ul>
 
           <div class="mt-6 pt-3">
-            <a class="font-semibold text-brand-olive-deep transition hover:text-brand-ink" href={`/servicios/${service.slug}/`}>
-              Ver servicio
+            <a class="font-bold text-brand-warm transition hover:text-brand-text" href={`/servicios/${service.slug}/`}>
+              Ver servicio →
             </a>
           </div>
         </article>

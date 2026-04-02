@@ -24,9 +24,9 @@ const metadata = buildMetadata({
 
       <div class="mt-10 grid gap-5 md:grid-cols-3">
         {page.categories.map((category) => (
-          <article class="rounded-[1.75rem] border border-brand-olive/10 bg-brand-paper p-6 shadow-[0_20px_50px_rgba(74,86,57,0.04)]">
-            <h2 class="font-display text-2xl text-brand-ink">{category.title}</h2>
-            <p class="mt-4 text-base leading-7 text-brand-ink-soft">{category.description}</p>
+          <article class="surface-card p-6">
+            <h2 class="text-xl font-bold text-brand-text">{category.title}</h2>
+            <p class="mt-4 text-base leading-7 text-brand-text-soft">{category.description}</p>
           </article>
         ))}
       </div>

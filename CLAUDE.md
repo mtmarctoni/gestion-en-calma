@@ -45,6 +45,9 @@ Documents:
 - Use arrays of strings or small structured objects when they are enough. Do not turn everything into rich text.
 - Keep sections reusable for future service-business projects.
 - `/studio` is part of the product surface, but it is still an editor tool, not a public marketing page.
+- **For UI/UX changes**: Always read `.agents/instructions/brand.md` first for color palette and typography rules.
+- **For visual implementation**: Check `.agents/instructions/design-system.md` for CSS tokens and component patterns.
+- **Default color palette**: Amarillo Girasol (#F7BC1E) is the primary action color. See brand.md for full palette.
 
 ## Local Workflow
 

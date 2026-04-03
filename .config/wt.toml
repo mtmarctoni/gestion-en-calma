@@ -1,0 +1,12 @@
+# Worktrunk project configuration for gestion-en-calma
+# Hooks for efficient parallel worktree workflow
+
+# Auto-link node_modules from main worktree (instant setup)
+# Uses symlink instead of pnpm install for speed
+pre-start = "ln -sf $WT_ROOT/node_modules $WT_PATH/node_modules"
+
+# Quality gate before merge - run typecheck + lint
+pre-merge = "pnpm check"
+
+# Notify on branch switch
+post-switch = "echo ' Branch: $(git branch --show-current)'"

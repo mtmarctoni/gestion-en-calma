@@ -1,0 +1,18 @@
+# pnpm 11 reads overrides and build approvals from this file. pnpm 10 reads
+# the overrides here from 10.6 on (CI uses the latest 10.x) and ignores
+# allowBuilds.
+#
+# 2026-10-24 overrides (security, each within the same major):
+# - js-yaml < 3.15.2 (GHSA-2883-xcg3-v3hh, GHSA-52cp-r559-cp3m,
+#   GHSA-5p4m-2wfm-xmqj, GHSA-h67p-54hq-rp68, GHSA-mh29-5h37-fv8m):
+#   @vercel/frameworks pins 3.13.1 exactly (via sanity -> @sanity/cli).
+# - zod < 4.6.6 (GHSA-mrhx-c7xc-m3w5): @vercel/cli-config pins 4.1.11
+#   exactly. It arrives via @vercel/functions -> @vercel/oidc, which both
+#   @astrojs/vercel 11 and astro (unstorage) depend on.
+overrides:
+  '@vercel/frameworks>js-yaml': ^3.15.2
+  '@vercel/cli-config>zod': ^4.6.7
+
+allowBuilds:
+  esbuild: true
+  sharp: true

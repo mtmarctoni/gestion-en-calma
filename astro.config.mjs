@@ -21,6 +21,9 @@ const sanityDataset =
 // https://astro.build/config
 export default defineConfig({
   site: siteUrl,
+  // Astro 7 changed the default to 'jsx', which strips whitespace between
+  // inline elements. Keep the Astro 6 output.
+  compressHTML: true,
   vite: {
     plugins: [tailwindcss()],
     define: {
